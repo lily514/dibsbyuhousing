@@ -1,145 +1,139 @@
 <html>
 <head>
-<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCQAyCFCa22iH5QwsvvLFrBUKE3f6kI0is",
-    authDomain: "photobook-621dd.firebaseapp.com",
-    databaseURL: "https://photobook-621dd.firebaseio.com",
-    projectId: "photobook-621dd",
-    storageBucket: "",
-    messagingSenderId: "291412252600"
-  };
-  firebase.initializeApp(config);
-</script>
+	<!-- Jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+	<!--- Bootstrap -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!--- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Oxygen:700|Roboto" rel="stylesheet">
+	<!-- CSS -->
+	<link rel="stylesheet" href="stylesheets/style.css">
+	<!-- Custom Scripts -->
+	<script src="/javascripts/controller.js"></script>
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+	<script>
+		var config = {
+			apiKey: "AIzaSyCQAyCFCa22iH5QwsvvLFrBUKE3f6kI0is",
+			authDomain: "photobook-621dd.firebaseapp.com",
+			databaseURL: "https://photobook-621dd.firebaseio.com",
+			projectId: "photobook-621dd",
+			storageBucket: "",
+			messagingSenderId: "291412252600"
+		};
+		firebase.initializeApp(config);
+	</script>
 
-<!-- Jquery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
-<!--- Bootstrap -->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<!--- Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Oxygen:700|Roboto" rel="stylesheet">
 
-<!--- CSS --->
-<link rel="stylesheet" href="stylesheets/style.css">
-<!--- Custom Scripts --->
-<title>Dibs BYU Housing</title>
-
-<LINK REL="SHORTCUT ICON"
-       HREF="/images/house.ico">
+	<title>Dibs BYU Housing</title>
+	<LINK REL="SHORTCUT ICON"
+				 HREF="/images/house.ico">
 </head>
 <body>
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        <img id="logo" alt="Brand" src="/images/house.ico">
-      </a>
-      <button type="button" class="btn btn-default navbar-btn">Sell Contract</button>
-      <button type="button" class="btn btn-default navbar-btn">Sign in</button>
-    </div>
-  </div>
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">
+				<img id="logo" alt="Brand" src="/images/house.ico">
+			</a>
+			<button type="button" class="btn btn-default navbar-btn">Sell Contract</button>
+			<button type="button" class="btn btn-default navbar-btn">Sign in</button>
+		</div>
+	</div>
 </nav>
 
 <div class="container">
-  <div class="quiz">
-    <div class="quiz-header">
-      <h3>What type of contract are you looking for?</h3>
-    </div>
-    <div class="quiz-content" data-toggle="buttons">
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz active">
-         <input type="radio" name="options" id="option1" autocomplete="off" checked>Family
-      </label>
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-          <input type="radio" name="options" id="option2" autocomplete="off">Women
-      </label>
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-          <input type="radio" name="options" id="option3" autocomplete="off">Men
-      </label>
-   </div>
-   <div class="quiz-footer">
-      <button class="btn btn-warning btn-submit" type="button">Next</button>
-      <br><a href="">Skip & Browse All</a>
-   </div>
- </div>
+	<form id="search-form" class="quiz" action="">
+		<div class="tab">
+			<div class="quiz-header">
+				<h3>What type of contract are you looking for?</h3>
+			</div>
+			<div class="quiz-content" data-toggle="buttons">
+				<label class="btn btn-default navbar-btn btn-lg btn-quiz active">
+					 <input type="radio" name="options" id="option1" autocomplete="off" checked>Family
+				</label>
+				<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+						<input type="radio" name="options" id="option2" autocomplete="off">Women
+				</label>
+				<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+						<input type="radio" name="options" id="option3" autocomplete="off">Men
+				</label>
+		 </div>
+	 </div>
 
-  <div class="quiz">
-        <div class="quiz-header">
-                <h3>How many bedrooms are you looking for?</h3>
-        </div>
-    <div class="quiz-content" data-toggle="buttons">
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz active">
-         <input type="radio" name="options" id="option1" autocomplete="off" checked>Studio
-      </label>
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-          <input type="radio" name="options" id="option2" autocomplete="off">1
-      </label>
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-          <input type="radio" name="options" id="option3" autocomplete="off">2
-      </label>
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-          <input type="radio" name="options" id="option3" autocomplete="off">3+
-      </label>
+		<div class="tab">
+			<div class="quiz-header">
+				<h3>How many bedrooms are you looking for?</h3>
+			</div>
+			<div class="quiz-content" data-toggle="buttons">
+				<label class="btn btn-default navbar-btn btn-lg btn-quiz active">
+					 <input type="radio" name="options" id="option1" autocomplete="off" checked>Studio
+				</label>
+				<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+						<input type="radio" name="options" id="option2" autocomplete="off">1
+				</label>
+				<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+						<input type="radio" name="options" id="option3" autocomplete="off">2
+				</label>
+				<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+						<input type="radio" name="options" id="option3" autocomplete="off">3+
+				</label>
+		 </div>
+		</div>
 
-   </div>
+	<div class="tab">
+		<div class="quiz-header">
+			<h3>What amenities are you looking for?</h3>
+		</div>
+		<div class="quiz-content" data-toggle="buttons">
+			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+				 <input type="checkbox" autocomplete="off">W/D In Unit
+			</label>
+			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+					<input type="checkbox" autocomplete="off">W/D On Site
+			</label>
+			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+					<input type="checkbox" autocomplete="off">W/D Hookups
+			</label>
+			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+					<input type="checkbox" autocomplete="off">Microwave
+			</label>
+			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+					<input type="checkbox" autocomplete="off">Dishwasher
+			</label>
+			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+					<input type="checkbox" autocomplete="off">Covered Parking
+			</label>
+			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+					<input type="checkbox" autocomplete="off">Pool
+			</label>
+			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+					<input type="checkbox" autocomplete="off">Hot tub
+			</label>
+			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+					<input type="checkbox" autocomplete="off">Gym
+			</label>
+		</div>
+	</div>
+
+	<div class="quiz-footer">
+			<button id="prevBtn" class="btn btn-warning btn-submit" type="button" onclick="nextPrev(-1)">Previous</button>
+			<button id="nextBtn" class="btn btn-warning btn-submit" type="button" onclick="nextPrev(1)">Next</button>
+			<br><a href="">Skip & Browse All</a>
+	</div>
+
+	<div style="text-align:center;margin-top:40px;">
+	  <span class="step"></span>
+	  <span class="step"></span>
+	  <span class="step"></span>
+	  <span class="step"></span>
+	</div>
 
 
-        <div class="quiz-footer">
-                <button class="btn btn-warning btn-submit" type="button">Next</button>
-                <br><a href="">Skip & Browse All</a>
-        </div>
-  </div>
-
-
-  <div class="quiz">
-        <div class="quiz-header">
-                <h3>What amenities are you looking for?</h3>
-        </div>
-    <div class="quiz-content" data-toggle="buttons">
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-         <input type="checkbox" autocomplete="off">W/D In Unit
-      </label>
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-          <input type="checkbox" autocomplete="off">W/D On Site
-      </label>
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-          <input type="checkbox" autocomplete="off">W/D Hookups
-      </label>
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-          <input type="checkbox" autocomplete="off">Microwave
-      </label>
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-          <input type="checkbox" autocomplete="off">Dishwasher
-      </label>
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-          <input type="checkbox" autocomplete="off">Covered Parking
-      </label>
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-          <input type="checkbox" autocomplete="off">Pool
-      </label>
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-          <input type="checkbox" autocomplete="off">Hot tub
-      </label>
-      <label class="btn btn-default navbar-btn btn-lg btn-quiz">
-          <input type="checkbox" autocomplete="off">Gym
-      </label>
-
-
-
-
-   </div>
-
-
-        <div class="quiz-footer">
-                <button class="btn btn-warning btn-submit" type="button">Next</button>
-                <br><a href="">Skip & Browse All</a>
-        </div>
-  </div>
-
+</form>
 
 </body>
 </html>
