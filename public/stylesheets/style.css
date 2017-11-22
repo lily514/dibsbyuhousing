@@ -24,6 +24,7 @@ body {
   background-color:white;
   border-radius: 25px;
   padding-bottom: 25px;
+  text-align:center;
 }
 
 .quiz-header{
@@ -33,8 +34,16 @@ body {
     border-top-right-radius: 25px;
     padding: 10px;
     text-overflow: ellipsis;
-    text-align:center;
 }
+
+.quiz-content {
+  padding: 25px;
+}
+
+.quiz-footer {
+  padding: 5px;
+}
+
 
 #jumbotron {
 
