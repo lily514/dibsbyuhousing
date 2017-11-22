@@ -1,0 +1,46 @@
+h1 {
+  font: "Oxygen", Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+#logo{
+  height: -webkit-fill-available;
+}
+
+.navbar-brand {
+  padding: 10px 10px;
+}
+
+body {
+  font: 14px "Roboto", Helvetica, Arial, sans-serif;
+  background-color: lightgrey;
+}
+
+.quiz {
+  background-color:white;
+  border-radius: 25px;
+  padding-bottom: 25px;
+}
+
+.quiz-header{
+    color: white;
+    background-color: orange;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 10px;
+    text-overflow: ellipsis;
+    text-align:center;
+}
+
+#jumbotron {
+
+}
+a {
+  color: #00B7FF;
+}
+
+
