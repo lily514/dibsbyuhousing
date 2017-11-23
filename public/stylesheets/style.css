@@ -8,12 +8,12 @@ h2 {
 }
 
 #logo{
-  height: -webkit-fill-available;
+  height: 30px;
 }
 
-.navbar-brand {
+/*.navbar-brand {
   padding: 10px 10px;
-}
+}*/
 
 body {
   font: 14px "Roboto", Helvetica, Arial, sans-serif;
@@ -21,6 +21,7 @@ body {
 }
 
 .quiz {
+  margin:20px;
   background-color:white;
   border-radius: 25px;
   padding-bottom: 25px;
@@ -44,14 +45,21 @@ body {
   padding: 5px;
 }
 
-
-#jumbotron {
-
-}
 a {
   color: #00B7FF;
 }
 
+#nextBtn, #prevBtn {
+  margin-bottom:10px;
+}
+
+#sell-form {
+  text-align: left;
+}
+
+#search-form {
+  text-align: center;
+}
 
 /* Make circles that indicate the steps of the form: */
 .step {
@@ -80,4 +88,24 @@ a {
   display: none;
 }
 
+
+/* layout.css Style */
+.upload-drop-zone {
+  height: 200px;
+  border-width: 2px;
+  margin-bottom: 20px;
+}
+
+/* skin.css Style*/
+.upload-drop-zone {
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  line-height: 200px;
+  text-align: center
+}
+.upload-drop-zone.drop {
+  color: #222;
+  border-color: #222;
+}
 

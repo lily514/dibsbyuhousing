@@ -1,0 +1,255 @@
+</!DOCTYPE html>
+<html>
+<head>
+	<!-- Jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+	<!--- Bootstrap -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!--- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Oxygen:700|Roboto" rel="stylesheet">
+	<!-- CSS -->
+	<link rel="stylesheet" href="stylesheets/style.css">
+	<!-- Custom Scripts -->
+	<script src="/javascripts/sell-contract-ctrl.js"></script>
+	<script src="/javascripts/nav-ctrl.js"></script>
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+	<script>
+		var config = {
+			apiKey: "AIzaSyCQAyCFCa22iH5QwsvvLFrBUKE3f6kI0is",
+			authDomain: "photobook-621dd.firebaseapp.com",
+			databaseURL: "https://photobook-621dd.firebaseio.com",
+			projectId: "photobook-621dd",
+			storageBucket: "",
+			messagingSenderId: "291412252600"
+		};
+		firebase.initializeApp(config);
+	</script>
+
+
+	<title>Dibs BYU Housing</title>
+	<LINK REL="SHORTCUT ICON"
+				 HREF="/images/house.ico"></LINK>
+</head>
+<body>
+	<!--Navigation bar-->
+	<div id="nav-placeholder">
+	</div>
+	<script>
+	$(function(){
+	  $("#nav-placeholder").load("nav.html");
+	});
+	</script>
+	<!--end of Navigation bar-->
+
+	<div class="container">
+		<div class="quiz">
+			<div class="quiz-header">
+					<h2>Sell Contract</h2>
+			</div>
+		<form id="sell-form" class="quiz-content" action="">
+				<h2>Contact Information</h2>
+			<div class="form-group row">
+  			<label for="contact-name" class="col-sm-2 col-form-label">Name</label>
+  			<div class="col-sm-10">
+    			<input class="form-control" type="text" value="" id="contact-name" placeholder="Name of Seller">
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <label for="contact-email" class="col-sm-2 col-form-label">Email</label>
+			  <div class="col-sm-10">
+			    <input class="form-control" type="email" value="" id="contact-email" placeholder="">
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <label for="contact-tel" class="col-sm-2 col-form-label">Phone</label>
+			  <div class="col-sm-10">
+			    <input class="form-control" type="tel" value="1-(555)-555-5555" id="contact-tel">
+			  </div>
+			</div>
+			<div class="form-group row">
+			 	<label class="col-sm-2 col-form-label">Preferred Contact Method</label>
+			 	<div class="col-sm-10" data-toggle="buttons">
+					<label class="btn btn-secondary">
+						 <input type="checkbox" autocomplete="off">Call
+					</label>
+					<label class="btn btn-secondary">
+							<input type="checkbox" autocomplete="off">Text
+					</label>
+					<label class="btn btn-secondary">
+							<input type="checkbox" autocomplete="off">Email
+					</label>
+				</div>
+			</div>
+
+			<hr>
+
+			<h2> Property Information </h2>
+			<!-- date available -->
+			<div class="form-group row">
+			  <label for="date-available" class="col-sm-2 col-form-label">Date Available</label>
+			  <div class="col-sm-10">
+			    <input class="form-control" type="date" value="2011-08-19" id="date-available">
+			  </div>
+			</div>
+			 <!-- address-line1 input-->
+			<div class="form-group row">
+			    <label class="col-sm-2 col-form-label">Address</label>
+			    <div class="col-sm-10">
+			        <input id="address-line1" name="address-line" type="text" placeholder="address line 1"
+			        class="form-control">
+			    </div>
+			</div>
+			<!-- city input-->
+			<div class="form-group row">
+			    <label class="col-sm-2 col-form-label">City</label>
+			    <div class="col-sm-10">
+			        <input id="city" name="city" type="text" placeholder="city" class="form-control">
+			    </div>
+			</div>
+			<!-- postal-code input-->
+			<div class="form-group row">
+			    <label class="col-sm-2 col-form-label">Zip Code</label>
+			    <div class="col-sm-10">
+			        <input id="postal-code" name="postal-code" type="text" placeholder="zip or postal code"
+			        class="form-control">
+			    </div>
+			</div>
+			<div class="form-group row">
+			  <label for="rent-usd" class="col-sm-2 col-form-label">Rent</label>
+			  <div class="col-sm-10">
+			    <input class="form-control" type="number" value="" id="rent-usd">
+			  </div>
+			</div>
+
+			<div class="form-group row">
+			  <label for="deposit-usd" class="col-sm-2 col-form-label">Deposit</label>
+			  <div class="col-sm-10">
+			    <input class="form-control" type="number" value="" id="deposit-usd">
+			  </div>
+			</div>
+
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Contract Type</label>
+				<div class="col-sm-10" data-toggle="buttons">
+					<label class="btn btn-secondary active">
+						 <input type="radio" name="options" id="option1" autocomplete="off" checked>Family
+					</label>
+					<label class="btn btn-secondary">
+							<input type="radio" name="options" id="option2" autocomplete="off">Women
+					</label>
+					<label class="btn btn-secondary">
+							<input type="radio" name="options" id="option3" autocomplete="off">Men
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Bedrooms</label>
+				<div class="col-sm-10" data-toggle="buttons">
+					<label class="btn btn-secondary active">
+						 <input type="radio" name="options" id="option1" autocomplete="off" checked>Studio
+					</label>
+					<label class="btn btn-secondary">
+							<input type="radio" name="options" id="option2" autocomplete="off">1
+					</label>
+					<label class="btn btn-secondary">
+							<input type="radio" name="options" id="option3" autocomplete="off">2
+					</label>
+					<label class="btn btn-secondary">
+							<input type="radio" name="options" id="option3" autocomplete="off">3+
+					</label>
+				</div>
+		 </div>
+
+
+		<div class="form-group row">
+		 	<label class="col-sm-2 col-form-label">Amenities</label>
+		 	<div class="col-sm-10" data-toggle="buttons">
+				<label class="btn btn-secondary">
+					 <input type="checkbox" autocomplete="off">W/D In Unit
+				</label>
+				<label class="btn btn-secondary">
+						<input type="checkbox" autocomplete="off">W/D On Site
+				</label>
+				<label class="btn btn-secondary">
+						<input type="checkbox" autocomplete="off">W/D Hookups
+				</label>
+				<label class="btn btn-secondary">
+						<input type="checkbox" autocomplete="off">Microwave
+				</label>
+				<label class="btn btn-secondary">
+						<input type="checkbox" autocomplete="off">Dishwasher
+				</label>
+				<label class="btn btn-secondary">
+						<input type="checkbox" autocomplete="off">Covered Parking
+				</label>
+				<label class="btn btn-secondary">
+						<input type="checkbox" autocomplete="off">Pool
+				</label>
+				<label class="btn btn-secondary">
+						<input type="checkbox" autocomplete="off">Hot tub
+				</label>
+				<label class="btn btn-secondary">
+						<input type="checkbox" autocomplete="off">Gym
+				</label>
+			</div>
+		</div>
+
+		<div class="form-group row">
+		  <label for="description" class="col-sm-2 col-form-label">Description</label>
+		  <div class="col-sm-10">
+		  	<textarea class="form-control" rows="5" id="description"></textarea>
+		  </div>
+		</div>
+
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Photos</label>
+			<div class="col-sm-10 container">
+          <!-- Standard Form -->
+          <h4>Select files from your computer</h4>
+          <form action="" method="post" enctype="multipart/form-data" id="js-upload-form" onsubmit="submitUpload()">
+            <div class="form-inline">
+              <div class="form-group">
+                <input type="file" name="files[]" id="js-upload-files" multiple>
+              </div>
+              <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit" >Upload files</button>
+            </div>
+          </form>
+
+          <!-- Drop Zone -->
+          <h4>Or drag and drop files below</h4>
+          <div class="upload-drop-zone" id="drop-zone">
+            Just drag and drop files here
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+              <span class="sr-only"></span>
+            </div>
+          </div>
+
+          <!-- Upload Finished -->
+          <div class="js-upload-finished">
+            <h4>Processed files</h4>
+            <div class="list-group">
+            </div>
+          </div>
+    	</div> <!-- /container -->
+  	</div>
+
+  	<div class="form-group row">
+  		<button type="submit" class="btn btn-secondary">Save Draft</button>
+  		<button type="submit" class="btn btn-info">Submit</button>
+  	</div>
+	</form>
+	</div>
+	</div>
+
+</body>
+</html>

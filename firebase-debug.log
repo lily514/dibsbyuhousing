@@ -1,0 +1,39 @@
+[debug] [2017-11-23T00:24:44.250Z] ----------------------------------------------------------------------
+[debug] [2017-11-23T00:24:44.253Z] Command:       /opt/bitnami/nodejs/bin/.node.bin /opt/bitnami/nodejs/bin/firebase login
+[debug] [2017-11-23T00:24:44.254Z] CLI Version:   3.15.3
+[debug] [2017-11-23T00:24:44.254Z] Platform:      linux
+[debug] [2017-11-23T00:24:44.254Z] Node Version:  v6.10.3
+[debug] [2017-11-23T00:24:44.254Z] Time:          Thu Nov 23 2017 00:24:44 GMT+0000 (UTC)
+[debug] [2017-11-23T00:24:44.254Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+[info] Visit this URL on any device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=342059497&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2017-11-23T00:26:31.470Z] ----------------------------------------------------------------------
+[debug] [2017-11-23T00:26:31.473Z] Command:       /opt/bitnami/nodejs/bin/.node.bin /opt/bitnami/nodejs/bin/firebase login:ci
+[debug] [2017-11-23T00:26:31.473Z] CLI Version:   3.15.3
+[debug] [2017-11-23T00:26:31.473Z] Platform:      linux
+[debug] [2017-11-23T00:26:31.473Z] Node Version:  v6.10.3
+[debug] [2017-11-23T00:26:31.473Z] Time:          Thu Nov 23 2017 00:26:31 GMT+0000 (UTC)
+[debug] [2017-11-23T00:26:31.473Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+[info] Visit this URL on any device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=827946014&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2017-11-23T03:12:42.322Z] ----------------------------------------------------------------------
+[debug] [2017-11-23T03:12:42.325Z] Command:       /opt/bitnami/nodejs/bin/.node.bin /opt/bitnami/nodejs/bin/firebase login
+[debug] [2017-11-23T03:12:42.325Z] CLI Version:   3.15.3
+[debug] [2017-11-23T03:12:42.325Z] Platform:      linux
+[debug] [2017-11-23T03:12:42.325Z] Node Version:  v6.10.3
+[debug] [2017-11-23T03:12:42.326Z] Time:          Thu Nov 23 2017 03:12:42 GMT+0000 (UTC)
+[debug] [2017-11-23T03:12:42.326Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+[info] Visit this URL on any device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=931759882&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...

@@ -4,7 +4,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
 	<!--- Bootstrap -->
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<!--- Fonts -->
@@ -13,6 +13,8 @@
 	<link rel="stylesheet" href="stylesheets/style.css">
 	<!-- Custom Scripts -->
 	<script src="/javascripts/controller.js"></script>
+	<script src="/javascripts/nav-ctrl.js"></script>
+
 	<!-- Firebase -->
 	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
 	<script>
@@ -30,20 +32,18 @@
 
 	<title>Dibs BYU Housing</title>
 	<LINK REL="SHORTCUT ICON"
-				 HREF="/images/house.ico">
+				 HREF="/images/house.ico"></LINK>
 </head>
 <body>
-<nav class="navbar navbar-default">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">
-				<img id="logo" alt="Brand" src="/images/house.ico">
-			</a>
-			<button type="button" class="btn btn-default navbar-btn">Sell Contract</button>
-			<button type="button" class="btn btn-default navbar-btn">Sign in</button>
-		</div>
-	</div>
-</nav>
+<!--Navigation bar-->
+<div id="nav-placeholder">
+</div>
+<script>
+$(function(){
+  $("#nav-placeholder").load("nav.html");
+});
+</script>
+<!--end of Navigation bar-->
 
 <div class="container">
 	<form id="search-form" class="quiz" action="">
@@ -52,13 +52,13 @@
 				<h3>What type of contract are you looking for?</h3>
 			</div>
 			<div class="quiz-content" data-toggle="buttons">
-				<label class="btn btn-default navbar-btn btn-lg btn-quiz active">
+				<label class="btn btn-secondary btn-lg btn-quiz active">
 					 <input type="radio" name="options" id="option1" autocomplete="off" checked>Family
 				</label>
-				<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+				<label class="btn btn-secondary btn-lg btn-quiz">
 						<input type="radio" name="options" id="option2" autocomplete="off">Women
 				</label>
-				<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+				<label class="btn btn-secondary btn-lg btn-quiz">
 						<input type="radio" name="options" id="option3" autocomplete="off">Men
 				</label>
 		 </div>
@@ -69,16 +69,16 @@
 				<h3>How many bedrooms are you looking for?</h3>
 			</div>
 			<div class="quiz-content" data-toggle="buttons">
-				<label class="btn btn-default navbar-btn btn-lg btn-quiz active">
+				<label class="btn btn-secondary btn-lg btn-quiz active">
 					 <input type="radio" name="options" id="option1" autocomplete="off" checked>Studio
 				</label>
-				<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+				<label class="btn btn-secondary btn-lg btn-quiz">
 						<input type="radio" name="options" id="option2" autocomplete="off">1
 				</label>
-				<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+				<label class="btn btn-secondary btn-lg btn-quiz">
 						<input type="radio" name="options" id="option3" autocomplete="off">2
 				</label>
-				<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+				<label class="btn btn-secondary btn-lg btn-quiz">
 						<input type="radio" name="options" id="option3" autocomplete="off">3+
 				</label>
 		 </div>
@@ -89,47 +89,46 @@
 			<h3>What amenities are you looking for?</h3>
 		</div>
 		<div class="quiz-content" data-toggle="buttons">
-			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+			<label class="btn btn-secondary btn-lg btn-quiz">
 				 <input type="checkbox" autocomplete="off">W/D In Unit
 			</label>
-			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+			<label class="btn btn-secondary btn-lg btn-quiz">
 					<input type="checkbox" autocomplete="off">W/D On Site
 			</label>
-			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+			<label class="btn btn-secondary btn-lg btn-quiz">
 					<input type="checkbox" autocomplete="off">W/D Hookups
 			</label>
-			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+			<label class="btn btn-secondary btn-lg btn-quiz">
 					<input type="checkbox" autocomplete="off">Microwave
 			</label>
-			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+			<label class="btn btn-secondary btn-lg btn-quiz">
 					<input type="checkbox" autocomplete="off">Dishwasher
 			</label>
-			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+			<label class="btn btn-secondary btn-lg btn-quiz">
 					<input type="checkbox" autocomplete="off">Covered Parking
 			</label>
-			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+			<label class="btn btn-secondary btn-lg btn-quiz">
 					<input type="checkbox" autocomplete="off">Pool
 			</label>
-			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+			<label class="btn btn-secondary btn-lg btn-quiz">
 					<input type="checkbox" autocomplete="off">Hot tub
 			</label>
-			<label class="btn btn-default navbar-btn btn-lg btn-quiz">
+			<label class="btn btn-secondary btn-lg btn-quiz">
 					<input type="checkbox" autocomplete="off">Gym
 			</label>
 		</div>
 	</div>
 
 	<div class="quiz-footer">
-			<button id="prevBtn" class="btn btn-warning btn-submit" type="button" onclick="nextPrev(-1)">Previous</button>
-			<button id="nextBtn" class="btn btn-warning btn-submit" type="button" onclick="nextPrev(1)">Next</button>
-			<br><a href="">Skip & Browse All</a>
-	</div>
-
-	<div style="text-align:center;margin-top:40px;">
-	  <span class="step"></span>
-	  <span class="step"></span>
-	  <span class="step"></span>
-	  <span class="step"></span>
+		<button id="prevBtn" class="btn btn-info btn-submit" type="button" onclick="nextPrev(-1)">Previous</button>
+		<button id="nextBtn" class="btn btn-info btn-submit" type="button" onclick="nextPrev(1)">Next</button>
+		<div>
+		  <span class="step"></span>
+		  <span class="step"></span>
+		  <span class="step"></span>
+		  <span class="step"></span>
+		</div>
+		<br><a href="">Skip & Browse All</a>
 	</div>
 
 
