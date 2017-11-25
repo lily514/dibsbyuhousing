@@ -1,5 +1,17 @@
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta charset="UTF-8">
+    <title>Dibs BYU Housing</title>
+
+    <script src="https://www.gstatic.com/firebasejs/live/4.3/firebase.js"></script>
+    <script src="/javascripts/config.js"></script>
+    <script src="/javascripts/common.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth__en.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<!-- Jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
 	<!--- Bootstrap -->
@@ -7,60 +19,81 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<!-- Angular -->
-	<script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
+	
 	<!--- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Oxygen:700|Roboto" rel="stylesheet">
 	<!-- CSS -->
 	<link rel="stylesheet" href="stylesheets/style.css">
 	<!-- Custom Scripts -->
-	<script src="/javascripts/signin-ctrl.js"></script>
 	<script src="/javascripts/nav-ctrl.js"></script>
 
 	<title>Dibs BYU Housing</title>
 	<LINK REL="SHORTCUT ICON"
 				 HREF="/images/house.ico"></LINK>
 </head>
-<body ng-app="dibs-user" ng-controller="MainCtrl">
+<body>
 <!--Navigation bar-->
-<div id="nav-placeholder">
+<!-- <div id="nav-placeholder">
 </div>
 <script>
 $(function(){
   $("#nav-placeholder").load("nav.html");
 });
-</script>
+</script> -->
+<nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+    	<img id="logo" src="/images/house.ico">
+    	Dibs
+    </a>
+    <div class="mr-auto"></div>
+    <ul class="navbar-nav d-flex justify-content-end collapse">
+      <li class="nav-item">
+        <a class="nav-link" href="/sellcontract">Sell Contract</a>
+      </li>
+      <li id="nav-user-signed-out" class="nav-item">
+        <a class="nav-link" href="/signin">Login</a>
+      </li>
+      <li id="nav-user-signed-in" class="hidden nav-item">
+        <a class="nav-link" href="/signin">Account</a>
+      </li>
+    </ul>
+</nav>
+
+
+
 <!--end of Navigation bar-->
-
-<div class="container">
-	<form id="signin-form" ng-submit="loginRegister()" class="quiz" action="">
-		<div class="quiz-header">
-			<h3>Login or Register</h3>
-		</div>
-
-	<div class="quiz-content">
-		<div class="form-group row">
-		  <label for="user-email" class="col-sm-2 col-form-label">Email</label>
-		  <div class="col-sm-10">
-		    <input ng-model="email" class="form-control" type="email" value="" id="user-email" placeholder="Email">
-		  </div>
-		</div>
-
-		<div class="form-group row">
-		    <label for="user-password" class="col-sm-2 col-form-label">Password</label>
-		    <div class="col-sm-10">
-		    	<input ng-model="password" type="password" class="form-control" id="user-password" placeholder="Password">
-		    </div>
-	  	</div>
-	  </div>
-
-	<div class="quiz-footer">
-			<button id="login" class="btn btn-info btn-submit quiz-btn" type="submit">Login / Register </button>
-			<button id="login" class="btn btn-info btn-submit quiz-btn" type="button">Login with Google</button>
-	</div>
-
-
-</form>
-
-</body>
+    <div id="container" class="quiz">
+      <h2 class="quiz-header">Sign In or Create Account</h2>
+      <div id="loading">Loading...</div>
+      <div id="loaded" class="hidden">
+        <div id="main">
+          <div id="user-signed-in" class="hidden">
+            <div id="user-info">
+              <div id="photo-container">
+                <img id="photo">
+              </div>
+              <div id="name"></div>
+              <div id="email"></div>
+              <div id="phone"></div>
+              <div class="clearfix"></div>
+            </div>
+            <p>
+              <button id="sign-out">Sign Out</button>
+              <button id="delete-account">Delete account</button>
+            </p>
+          </div>
+          <div id="user-signed-out" class="hidden">
+          	<p>An account is required to post a contract for sale or save a search filter</p>
+            <div id="firebaseui-spa">
+              <div id="firebaseui-container"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/javascripts/user-firebase.js"></script>
+  </body>
 </html>

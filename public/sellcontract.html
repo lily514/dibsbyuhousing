@@ -8,6 +8,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<!-- Angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 	<!--- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Oxygen:700|Roboto" rel="stylesheet">
 	<!-- CSS -->
@@ -15,19 +18,13 @@
 	<!-- Custom Scripts -->
 	<script src="/javascripts/sell-contract-ctrl.js"></script>
 	<script src="/javascripts/nav-ctrl.js"></script>
+
 	<!-- Firebase -->
-	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-	<script>
-		var config = {
-			apiKey: "AIzaSyCQAyCFCa22iH5QwsvvLFrBUKE3f6kI0is",
-			authDomain: "photobook-621dd.firebaseapp.com",
-			databaseURL: "https://photobook-621dd.firebaseio.com",
-			projectId: "photobook-621dd",
-			storageBucket: "",
-			messagingSenderId: "291412252600"
-		};
-		firebase.initializeApp(config);
-	</script>
+	<script src="https://www.gstatic.com/firebasejs/live/4.3/firebase.js"></script>
+	<script src="/javascripts/config.js"></script>
+    <script src="/javascripts/common.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth__en.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth.css" />
 
 
 	<title>Dibs BYU Housing</title>
@@ -35,39 +32,53 @@
 				 HREF="/images/house.ico"></LINK>
 </head>
 <body>
-	<!--Navigation bar-->
-	<div id="nav-placeholder">
-	</div>
-	<script>
-	$(function(){
-	  $("#nav-placeholder").load("nav.html");
-	});
-	</script>
-	<!--end of Navigation bar-->
+<!--Navigation bar-->
+<nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+    	<img id="logo" src="/images/house.ico">
+    	Dibs
+    </a>
+    <div class="mr-auto"></div>
+    <ul class="navbar-nav d-flex justify-content-end collapse">
+      <li class="nav-item">
+        <a class="nav-link" href="/sellcontract">Sell Contract</a>
+      </li>
+      <li id="nav-user-signed-out" class="nav-item">
+        <a class="nav-link" href="/signin">Login</a>
+      </li>
+      <li id="nav-user-signed-in" class="hidden nav-item">
+        <a class="nav-link" href="/signin">Account</a>
+      </li>
+    </ul>
+</nav>
+<!--end of Navigation bar-->
 
-	<div class="container">
+	<div ng-app="contract" ng-controller="MainCtrl" class="container">
 		<div class="quiz">
 			<div class="quiz-header">
 					<h2>Sell Contract</h2>
 			</div>
-		<form id="sell-form" class="quiz-content" action="">
+		<form id="sell-form" class="quiz-content" action="" ng-submit="save()">
 				<h2>Contact Information</h2>
 			<div class="form-group row">
   			<label for="contact-name" class="col-sm-2 col-form-label">Name</label>
   			<div class="col-sm-10">
-    			<input class="form-control" type="text" value="" id="contact-name" placeholder="Name of Seller">
+    			<input ng-model="sellername" class="form-control" type="text" value="" id="contact-name" placeholder="Name of Seller">
 			  </div>
 			</div>
 			<div class="form-group row">
 			  <label for="contact-email" class="col-sm-2 col-form-label">Email</label>
 			  <div class="col-sm-10">
-			    <input class="form-control" type="email" value="" id="contact-email" placeholder="">
+			    <input ng-model="selleremail" class="form-control" type="email" value="" id="contact-email" placeholder="">
 			  </div>
 			</div>
 			<div class="form-group row">
 			  <label for="contact-tel" class="col-sm-2 col-form-label">Phone</label>
 			  <div class="col-sm-10">
-			    <input class="form-control" type="tel" value="1-(555)-555-5555" id="contact-tel">
+			    <input ng-model="sellertel" class="form-control" type="tel" value="1-(555)-555-5555" id="contact-tel">
 			  </div>
 			</div>
 			<div class="form-group row">
@@ -92,43 +103,43 @@
 			<div class="form-group row">
 			  <label for="date-available" class="col-sm-2 col-form-label">Date Available</label>
 			  <div class="col-sm-10">
-			    <input class="form-control" type="date" value="2011-08-19" id="date-available">
+			    <input ng-model="date" class="form-control" type="date" value="2011-08-19" id="date-available">
 			  </div>
 			</div>
 			 <!-- address-line1 input-->
 			<div class="form-group row">
 			    <label class="col-sm-2 col-form-label">Address</label>
 			    <div class="col-sm-10">
-			        <input id="address-line1" name="address-line" type="text" placeholder="address line 1"
+			        <input ng-model="address" id="address-line1" name="address-line" type="text" placeholder="address line 1"
 			        class="form-control">
 			    </div>
 			</div>
 			<!-- city input-->
 			<div class="form-group row">
 			    <label class="col-sm-2 col-form-label">City</label>
-			    <div class="col-sm-10">
-			        <input id="city" name="city" type="text" placeholder="city" class="form-control">
+			    <div  class="col-sm-10">
+			        <input ng-model="city" id="city" name="city" type="text" placeholder="city" class="form-control">
 			    </div>
 			</div>
 			<!-- postal-code input-->
 			<div class="form-group row">
 			    <label class="col-sm-2 col-form-label">Zip Code</label>
 			    <div class="col-sm-10">
-			        <input id="postal-code" name="postal-code" type="text" placeholder="zip or postal code"
+			        <input ng-model="zip" id="postal-code" name="postal-code" type="text" placeholder="zip or postal code"
 			        class="form-control">
 			    </div>
 			</div>
 			<div class="form-group row">
 			  <label for="rent-usd" class="col-sm-2 col-form-label">Rent</label>
 			  <div class="col-sm-10">
-			    <input class="form-control" type="number" value="" id="rent-usd">
+			    <input ng-model="rent" class="form-control" type="number" value="" id="rent-usd">
 			  </div>
 			</div>
 
 			<div class="form-group row">
 			  <label for="deposit-usd" class="col-sm-2 col-form-label">Deposit</label>
 			  <div class="col-sm-10">
-			    <input class="form-control" type="number" value="" id="deposit-usd">
+			    <input ng-model="deposit" class="form-control" type="number" value="" id="deposit-usd">
 			  </div>
 			</div>
 
@@ -199,10 +210,16 @@
 			</div>
 		</div>
 
+			<hr>
+
+			<h2> Photos & Description </h2>
+			<!-- date available -->
+
+
 		<div class="form-group row">
 		  <label for="description" class="col-sm-2 col-form-label">Description</label>
 		  <div class="col-sm-10">
-		  	<textarea class="form-control" rows="5" id="description"></textarea>
+		  	<textarea ng-model="description" class="form-control" rows="5" id="description"></textarea>
 		  </div>
 		</div>
 
@@ -211,18 +228,17 @@
 			<label class="col-sm-2 col-form-label">Photos</label>
 			<div class="col-sm-10 container">
           <!-- Standard Form -->
-          <h4>Select files from your computer</h4>
-          <form action="" method="post" enctype="multipart/form-data" id="js-upload-form" onsubmit="submitUpload()">
+<!--           <form action="" method="post" enctype="multipart/form-data" id="js-upload-form" onsubmit="submitUpload()"> -->
             <div class="form-inline">
               <div class="form-group">
                 <input type="file" name="files[]" id="js-upload-files" multiple>
               </div>
-              <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit" >Upload files</button>
+              <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit" onclick="submitUpload()">Upload files</button>
             </div>
-          </form>
+<!--           </form> -->
 
           <!-- Drop Zone -->
-          <h4>Or drag and drop files below</h4>
+          <p>Or drag and drop files below</p>
           <div class="upload-drop-zone" id="drop-zone">
             Just drag and drop files here
           </div>
@@ -236,18 +252,21 @@
 
           <!-- Upload Finished -->
           <div class="js-upload-finished">
-            <h4>Processed files</h4>
+            <p>Processed files</p>
             <div class="list-group">
             </div>
           </div>
     	</div> <!-- /container -->
   	</div>
 
-  	<div class="form-group row">
-  		<button type="submit" class="btn btn-secondary">Save Draft</button>
-  		<button type="submit" class="btn btn-info">Submit</button>
+  	<div class="form-group row center">
+  		<button id="saveBtn" type="submit" class="btn btn-secondary">Save Draft</button>
+  		<button id="submitBtn" type="submit" class="btn btn-info">Submit</button>
   	</div>
+
 	</form>
+	<script src="/javascripts/user-firebase.js"></script>
+	<script src="/javascripts/debug-contract.js"></script>
 	</div>
 	</div>
 

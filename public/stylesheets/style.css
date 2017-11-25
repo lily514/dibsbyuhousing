@@ -49,8 +49,12 @@ a {
   color: #00B7FF;
 }
 
-#nextBtn, #prevBtn {
+#nextBtn, #prevBtn, {
   margin-bottom:10px;
+}
+
+#saveBtn, #submitBtn {
+  margin:5px;
 }
 
 #sell-form {
@@ -58,6 +62,10 @@ a {
 }
 
 #search-form {
+  text-align: center;
+}
+
+.center { 
   text-align: center;
 }
 
@@ -88,6 +96,10 @@ a {
   display: none;
 }
 
+.hidden {
+  display: none;
+}
+
 
 /* layout.css Style */
 .upload-drop-zone {
@@ -102,10 +114,9 @@ a {
   border-style: dashed;
   border-color: #ccc;
   line-height: 200px;
-  text-align: center
+  text-align: center;
 }
 .upload-drop-zone.drop {
   color: #222;
   border-color: #222;
 }
-
