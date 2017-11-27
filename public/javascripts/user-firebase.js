@@ -20,55 +20,18 @@
  * @return {!Object} The FirebaseUI config.
  */
 function getUiConfig() {
-  return {
-    'callbacks': {
-      // Called when the user has been successfully signed in.
-      'signInSuccess': function(user, credential, redirectUrl) {
-        handleSignedInUser(user);
-        // Do not redirect.
-        return false;
-      }
-    },
-    // Opens IDP Providers sign-in flow in a popup.
-    'signInFlow': 'popup',
-    'signInOptions': [
-      // TODO(developer): Remove the providers you don't need for your app.
-      {
-        provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        // Required to enable this provider in One-Tap Sign-up.
-        authMethod: 'https://accounts.google.com',
-        // Required to enable ID token credentials for this provider.
-        clientId: CLIENT_ID
-      },
-      // {
-      //   provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      //   scopes :[
-      //     'public_profile',
-      //     'email',
-      //     'user_likes',
-      //     'user_friends'
-      //   ]
-      // },
-      // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-      // firebase.auth.GithubAuthProvider.PROVIDER_ID,
-      {
-        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        // Whether the display name should be displayed in Sign Up page.
-        requireDisplayName: true
-      },
-      // {
-      //   provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-      //   recaptchaParameters: {
-      //     size: getRecaptchaMode()
-      //   }
-      // }
-    ],
-    // Terms of service url.
-    'tosUrl': 'https://www.google.com',
-    'credentialHelper': CLIENT_ID && CLIENT_ID != 'YOUR_OAUTH_CLIENT_ID' ?
-        firebaseui.auth.CredentialHelper.GOOGLE_YOLO :
-        firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
-  };
+  var uiConfig = {
+        signInSuccessUrl: '/signin',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        ],
+        // Terms of service url.
+        tosUrl: ''
+      };
+
+  return uiConfig;
 }
 
 // Initialize the FirebaseUI Widget using Firebase.
@@ -159,9 +122,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     } else {
       navSignedOutUser();
     }  
-  }
-
-  
+   }
+ 
 });
 
 /**

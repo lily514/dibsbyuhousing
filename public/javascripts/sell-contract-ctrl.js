@@ -38,6 +38,35 @@ angular.module('contract', [])
 '$scope','$http',
 function($scope, $http) {
   $scope.contracts = [];
+  $scope.contactMethods = ['Call', 'Text', 'Email'];
+  $scope.selectedContactMethod = [];
+
+  $scope.amenities = [];
+
+  $scope.toggleContact = function toggleContact(methodName){
+  	console.log(methodName);
+  	var idx = $scope.selectedContactMethod.indexOf(methodName);
+  	// Is currently selected
+    if (idx > -1) {
+      $scope.selectedContactMethod.splice(idx, 1);
+    }
+
+    // Is newly selected
+    else {
+      $scope.selectedContactMethod.push(methodName);
+    }
+
+  }
+
+    //   $scope.dovote = function() {
+    //   console.log("In Dovote");
+    //   angular.forEach($scope.candidates, function(value,key) {
+    //     if(value.selected) {
+    //       $scope.upvote(value);
+    //       $scope.ballot.push(value);
+    //     }
+    //   });
+    // }
 
   $scope.create = function(contract) {
   	console.log(contract);
@@ -60,6 +89,7 @@ function($scope, $http) {
       sellername: $scope.sellername,
       selleremail: $scope.selleremail,
       sellertel: $scope.sellertel,
+      sellerpref: $scope.selectedContactMethod,
       date: $scope.date,
       address: $scope.address,
       city: $scope.city,
@@ -69,20 +99,15 @@ function($scope, $http) {
       description: $scope.description
     }
     console.log(contractData);
+	// Get a key for a new Post.
+  var newContractKey = firebase.database().ref().child('contracts').push().key;
 
-    var newContractKey = firebase.database().ref().child('contracts').push().key;
-    console.log(newContractKey);
+  // Write the new post's data simultaneously in the contracts list and the user's post list.
+  var updates = {};
+  updates['/contracts/' + newContractKey] = contractData;
+  updates['/user-contracts/' + userId + '/' + newContractKey] = contractData;
 
-    var updates = {};
-    updates['/dibs-byu-housing/contracts/'+newContractKey] = contractData;
-    //updates['/dibs-byu-user-contracts/'+userId+'/'+newContractKey] = contractData;
-
-
-    try {
-      return firebase.database().ref().child('contracts').push(contractData);
-    } catch (error) {
-      console.log(error);
-    }
+  return firebase.database().ref().update(updates);
 
 
 
@@ -90,6 +115,20 @@ function($scope, $http) {
 
 }
 ]);
+
+
+var commentsRef = firebase.database().ref('contracts/');
+commentsRef.on('child_added', function(data) {
+  console.log("child added!");
+});
+
+commentsRef.on('child_changed', function(data) {
+  console.log("child changed!");
+});
+
+commentsRef.on('child_removed', function(data) {
+  console.log("child removed!");
+});
 
 
 
