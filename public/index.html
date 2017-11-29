@@ -30,15 +30,18 @@
 <body>
 <!--Navigation bar-->
 <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<!--     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> -->
     <a class="navbar-brand" href="/">
     	<img id="logo" src="/images/house.ico">
     	Dibs
     </a>
     <div class="mr-auto"></div>
     <ul class="navbar-nav d-flex justify-content-end collapse">
+      <li class="nav-item">
+        <a class="nav-link" href="/browse">Browse</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="/sellcontract">Sell Contract</a>
       </li>
@@ -52,6 +55,7 @@
 </nav>
 <!--end of Navigation bar-->
 
+<!-- beginning of questionairre -->
 <div class="container">
 	<form id="search-form" class="quiz" action="">
 		<div class="tab">
@@ -91,55 +95,60 @@
 		 </div>
 		</div>
 
-	<div class="tab">
-		<div class="quiz-header">
-			<h3>What amenities are you looking for?</h3>
+		<div class="tab">
+			<div class="quiz-header">
+				<h3>What amenities are you looking for?</h3>
+			</div>
+			<div class="quiz-content" data-toggle="buttons">
+				<label class="btn btn-secondary btn-lg btn-quiz">
+					 <input type="checkbox" autocomplete="off">W/D In Unit
+				</label>
+				<label class="btn btn-secondary btn-lg btn-quiz">
+						<input type="checkbox" autocomplete="off">W/D On Site
+				</label>
+				<label class="btn btn-secondary btn-lg btn-quiz">
+						<input type="checkbox" autocomplete="off">W/D Hookups
+				</label>
+				<label class="btn btn-secondary btn-lg btn-quiz">
+						<input type="checkbox" autocomplete="off">Microwave
+				</label>
+				<label class="btn btn-secondary btn-lg btn-quiz">
+						<input type="checkbox" autocomplete="off">Dishwasher
+				</label>
+				<label class="btn btn-secondary btn-lg btn-quiz">
+						<input type="checkbox" autocomplete="off">Covered Parking
+				</label>
+				<label class="btn btn-secondary btn-lg btn-quiz">
+						<input type="checkbox" autocomplete="off">Pool
+				</label>
+				<label class="btn btn-secondary btn-lg btn-quiz">
+						<input type="checkbox" autocomplete="off">Hot tub
+				</label>
+				<label class="btn btn-secondary btn-lg btn-quiz">
+						<input type="checkbox" autocomplete="off">Gym
+				</label>
+			</div>
 		</div>
-		<div class="quiz-content" data-toggle="buttons">
-			<label class="btn btn-secondary btn-lg btn-quiz">
-				 <input type="checkbox" autocomplete="off">W/D In Unit
-			</label>
-			<label class="btn btn-secondary btn-lg btn-quiz">
-					<input type="checkbox" autocomplete="off">W/D On Site
-			</label>
-			<label class="btn btn-secondary btn-lg btn-quiz">
-					<input type="checkbox" autocomplete="off">W/D Hookups
-			</label>
-			<label class="btn btn-secondary btn-lg btn-quiz">
-					<input type="checkbox" autocomplete="off">Microwave
-			</label>
-			<label class="btn btn-secondary btn-lg btn-quiz">
-					<input type="checkbox" autocomplete="off">Dishwasher
-			</label>
-			<label class="btn btn-secondary btn-lg btn-quiz">
-					<input type="checkbox" autocomplete="off">Covered Parking
-			</label>
-			<label class="btn btn-secondary btn-lg btn-quiz">
-					<input type="checkbox" autocomplete="off">Pool
-			</label>
-			<label class="btn btn-secondary btn-lg btn-quiz">
-					<input type="checkbox" autocomplete="off">Hot tub
-			</label>
-			<label class="btn btn-secondary btn-lg btn-quiz">
-					<input type="checkbox" autocomplete="off">Gym
-			</label>
+
+		<div class="quiz-footer">
+			<button id="prevBtn" class="btn btn-info btn-submit" type="button" onclick="nextPrev(-1)">Previous</button>
+			<button id="nextBtn" class="btn btn-info btn-submit" type="button" onclick="nextPrev(1)">Next</button>
+			<div>
+			  <span class="step"></span>
+			  <span class="step"></span>
+			  <span class="step"></span>
+			  <span class="step"></span>
+			</div>
+			<br><a href="/browse">Skip & Browse All</a>
 		</div>
-	</div>
 
-	<div class="quiz-footer">
-		<button id="prevBtn" class="btn btn-info btn-submit" type="button" onclick="nextPrev(-1)">Previous</button>
-		<button id="nextBtn" class="btn btn-info btn-submit" type="button" onclick="nextPrev(1)">Next</button>
-		<div>
-		  <span class="step"></span>
-		  <span class="step"></span>
-		  <span class="step"></span>
-		  <span class="step"></span>
-		</div>
-		<br><a href="">Skip & Browse All</a>
-	</div>
+	</form>
+</div>
+<!-- end of questionairre -->
 
 
-</form>
+
+<!-- end of results -->
 <script src="/javascripts/user-firebase.js"></script>
 
 </body>

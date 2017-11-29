@@ -1,0 +1,93 @@
+<html>
+<head>
+	<!-- Jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+	<!--- Bootstrap -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!--- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Oxygen:700|Roboto" rel="stylesheet">
+	<!-- CSS -->
+	<link rel="stylesheet" href="stylesheets/style.css">
+	<!-- Angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/live/4.3/firebase.js"></script>
+	<script src="/javascripts/config.js"></script>
+    <script src="/javascripts/common.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth__en.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth.css" />
+
+
+	
+	<script src="/javascripts/contracts.js"></script>
+	
+
+	<title>Dibs BYU Housing</title>
+	<LINK REL="SHORTCUT ICON"
+				 HREF="/images/house.ico"></LINK>
+</head>
+<body>
+<!--Navigation bar-->
+<nav class="navbar navbar-toggleable-sm  navbar-light bg-faded">
+<!--     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <a class="navbar-brand" href="/">
+    	<img id="logo" src="/images/house.ico">
+    	Dibs
+    </a>
+    <div class="mr-auto"></div>
+    <ul class="navbar-nav d-flex justify-content-end collapse">
+      <li class="nav-item">
+        <a class="nav-link" href="/browse">Browse</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/sellcontract">Sell Contract</a>
+      </li>
+      <li id="nav-user-signed-out" class="nav-item">
+        <a class="nav-link" href="/signin">Login</a>
+      </li>
+      <li id="nav-user-signed-in" class="hidden nav-item">
+        <a class="nav-link" href="/signin">Account</a>
+      </li>
+    </ul>
+</nav>
+
+<nav class="nabvar filter">
+	<p>Filter Results</p>
+</nav>
+<!--end of Navigation bar-->
+
+<!-- beginning of questionairre -->
+<div ng-app="contract" ng-controller="MainCtrl" class="container">
+	<div class="contract" data-ng-repeat="c in contracts">
+		
+		
+		<p>Available: {{c.date}}</p>
+		<p>Address: {{c.address}}, {{c.city}}, UT {{c.zip}}</p>
+		<p>Rent: {{c.rent}}</p>
+		<p>Deposit: {{c.deposit}}</p>
+		<p>Amenities: <span data-ng-repeat="a in c.amenities">{{a}} </span></p>
+		<p>Description: {{c.description}}</p>
+		<hr>
+		<p>Contact: {{c.sellername}} </p>
+		<p>Prefered Contact: <span data-ng-repeat="pref in c.sellerpref">{{pref}} </span></p>
+
+
+
+	</div>
+</div>
+<!-- end of questionairre -->
+
+
+
+<!-- end of results -->
+
+
+</body>
+</html>

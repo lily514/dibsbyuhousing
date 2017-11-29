@@ -35,8 +35,9 @@ function nextPrev(n) {
 	// if you have reached the end of the form... :
 	if (currentTab >= x.length) {
 		//...the form gets submitted:
-		document.getElementById("search-form").submit();
-		return false;
+		// document.getElementById("search-form").submit();
+		submit();
+		return;
 	}
 	// Otherwise, display the correct tab:
 	showTab(currentTab);
@@ -49,6 +50,11 @@ function nextPrev(n) {
 	}
 	//... and adds the "active" class to the current step:
 	x[n].className += " active";
+
 }
 
+
+	function submit() {
+		window.open("/browse","_self");
+	}
 

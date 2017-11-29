@@ -41,7 +41,9 @@ function($scope, $http) {
   $scope.contactMethods = ['Call', 'Text', 'Email'];
   $scope.selectedContactMethod = [];
 
-  $scope.amenities = [];
+  $scope.amenities = ['W/D In Unit', 'W/D On Site', 'W/D Hookups', 'Microwave', 'Dishwasher', 'Covered Parking', 'Pool', 'Hot tub', 'Gym'];
+  $scope.selectedAmenities = [];
+
 
   $scope.toggleContact = function toggleContact(methodName){
   	console.log(methodName);
@@ -54,6 +56,21 @@ function($scope, $http) {
     // Is newly selected
     else {
       $scope.selectedContactMethod.push(methodName);
+    }
+
+  }
+
+   $scope.toggleAmenities = function toggleAmenities(amenity){
+  	console.log(amenity);
+  	var idx = $scope.selectedAmenities.indexOf(amenity);
+  	// Is currently selected
+    if (idx > -1) {
+      $scope.selectedAmenities.splice(idx, 1);
+    }
+
+    // Is newly selected
+    else {
+      $scope.selectedAmenities.push(amenity);
     }
 
   }
@@ -90,6 +107,7 @@ function($scope, $http) {
       selleremail: $scope.selleremail,
       sellertel: $scope.sellertel,
       sellerpref: $scope.selectedContactMethod,
+      amenities: $scope.selectedAmenities,
       date: $scope.date,
       address: $scope.address,
       city: $scope.city,

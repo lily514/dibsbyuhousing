@@ -17,6 +17,10 @@ router.get('/signin', function(req, res, next){
     res.sendFile(path.join(__dirname+'/../public/signin.html'));
 });
 
+router.get('/browse', function(req, res, next){
+    res.sendFile(path.join(__dirname+'/../public/browse.html'));
+});
+
 router.get('/widget', function(req, res, next){
     res.sendFile(path.join(__dirname+'/../public/widget.html'));
 });

@@ -20,6 +20,20 @@ body {
   background-color: lightgrey;
 }
 
+.contract {
+  background-color: white;
+  border-radius: 25px;
+  padding:25px;
+  margin-top:25px;
+}
+
+.filter {
+  color: white;
+  background-color: orange;
+  padding:25px;
+  vertical-align: center;
+}
+
 .quiz {
   margin:20px;
   background-color:white;
@@ -74,6 +88,7 @@ a {
   height: 15px;
   width: 15px;
   margin: 0 2px;
+  margin-top: 15px;
   background-color: #bbbbbb;
   border: none; 
   border-radius: 50%;
