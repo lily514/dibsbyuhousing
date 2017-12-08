@@ -1,0 +1,23 @@
+{
+  "name": "public",
+  "homepage": "https://github.com/lily514/dibsbyuhousing",
+  "authors": [
+    "lily514 <l.hamelaswood@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular-bootstrap-multiselect": "https://github.com/bentorfs/angular-bootstrap-multiselect.git#^1.1.11"
+  },
+  "dependencies": {
+    "angular-2-dropdown-multiselect": "^1.6.3"
+  }
+}

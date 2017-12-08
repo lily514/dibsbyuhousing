@@ -25,9 +25,7 @@
 	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth.css" />
 
 
-	<!-- Custom Scripts -->
-	<script src="/javascripts/sell-contract-ctrl.js"></script>
-	<script src="/javascripts/nav-ctrl.js"></script>
+
 
 	<title>Dibs BYU Housing</title>
 	<LINK REL="SHORTCUT ICON"
@@ -153,34 +151,33 @@
 
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">Contract Type</label>
-				<div class="col-sm-10" data-toggle="buttons">
-					<label class="btn btn-secondary active">
-						 <input type="radio" name="options" id="option1" autocomplete="off" checked>Family
+				<div class="col-sm-10">
+			 		<span ng-repeat="category in categories" data-toggle="buttons" ng-check="selectedCategory == category"
+						 ng-click="toggleCategory(category)">
+			 		<label class="btn btn-secondary" >
+						 <input class="category-radio" 
+						 type="radio" 
+						 autocomplete="off" 
+						 name="selectedCategory"
+						 value="{{category}}"> {{category}}
 					</label>
-					<label class="btn btn-secondary">
-							<input type="radio" name="options" id="option2" autocomplete="off">Women
-					</label>
-					<label class="btn btn-secondary">
-							<input type="radio" name="options" id="option3" autocomplete="off">Men
-					</label>
+					</span>
 				</div>
 			</div>
 
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">Bedrooms</label>
-				<div class="col-sm-10" data-toggle="buttons">
-					<label class="btn btn-secondary active">
-						 <input type="radio" name="options" id="option1" autocomplete="off" checked>Studio
+				<div class="col-sm-10">
+			 		<span ng-repeat="bed in bedrooms" data-toggle="buttons" ng-check="selectedCategory == category"
+						 ng-click="toggleBed(bed)">
+			 		<label class="btn btn-secondary" >
+						 <input class="bed-radio" 
+						 type="radio" 
+						 autocomplete="off" 
+						 name="selectedBed"
+						 value="{{bed}}"> {{bed}}
 					</label>
-					<label class="btn btn-secondary">
-							<input type="radio" name="options" id="option2" autocomplete="off">1
-					</label>
-					<label class="btn btn-secondary">
-							<input type="radio" name="options" id="option3" autocomplete="off">2
-					</label>
-					<label class="btn btn-secondary">
-							<input type="radio" name="options" id="option3" autocomplete="off">3+
-					</label>
+					</span>
 				</div>
 		 </div>
 
@@ -224,9 +221,9 @@
 <!--           <form action="" method="post" enctype="multipart/form-data" id="js-upload-form" onsubmit="submitUpload()"> -->
             <div class="form-inline">
               <div class="form-group">
-                <input type="file" name="files[]" id="js-upload-files" multiple>
+                <input type="file" name="files[]" id="js-upload-files" multiple >
               </div>
-              <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit" onclick="submitUpload()">Upload files</button>
+              <button class="btn btn-sm btn-primary" type="button" id="js-upload-submit" ng-click="startUpload()">Upload files</button>
             </div>
 <!--           </form> -->
 
@@ -236,7 +233,7 @@
             Just drag and drop files here
           </div>
 
-          <!-- Progress Bar -->
+<!--           <!-- Progress Bar -->
           <div class="progress">
             <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
               <span class="sr-only"></span>
@@ -246,20 +243,22 @@
           <!-- Upload Finished -->
           <div class="js-upload-finished">
             <p>Processed files</p>
-            <div class="list-group">
+            <div class="list-group" ng-repeat="pics in pictures">
+            	<p><{{pics.name}}</p>
             </div>
-          </div>
+          </div> 
     	</div> <!-- /container -->
   	</div>
 
   	<div class="form-group row center">
-  		<button id="saveBtn" type="submit" class="btn btn-secondary">Save Draft</button>
+  		<button id="saveBtn" type="button" class="btn btn-secondary">Save Draft</button>
   		<button id="submitBtn" type="submit" class="btn btn-info">Submit</button>
   	</div>
 
 	</form>
 	<script src="/javascripts/user-firebase.js"></script>
 	<script src="/javascripts/debug-contract.js"></script>
+	<script src="/javascripts/sell-contract-ctrl.js"></script>
 	</div>
 	</div>
 

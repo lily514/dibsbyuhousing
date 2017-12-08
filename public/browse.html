@@ -24,7 +24,7 @@
 
 
 	
-	<script src="/javascripts/contracts.js"></script>
+	<script src="/javascripts/sell-contract-ctrl.js"></script>
 	
 
 	<title>Dibs BYU Housing</title>
@@ -65,13 +65,14 @@
 
 <!-- beginning of questionairre -->
 <div ng-app="contract" ng-controller="MainCtrl" class="container">
-	<div class="contract" data-ng-repeat="c in contracts">
+	<div class="contract" data-ng-repeat="c in matching_contracts">
 		
-		
+		<h4>{{c.category}} : Address: {{c.address}}, {{c.city}}, UT {{c.zip}} </h4>
+		<span data-ng-repeat="img in c.images"><img ng-src="{{img.url}}" style="height:20%"></span>
 		<p>Available: {{c.date}}</p>
-		<p>Address: {{c.address}}, {{c.city}}, UT {{c.zip}}</p>
 		<p>Rent: {{c.rent}}</p>
 		<p>Deposit: {{c.deposit}}</p>
+		<p>Bedrooms: {{c.bedrooms}}</p>
 		<p>Amenities: <span data-ng-repeat="a in c.amenities">{{a}} </span></p>
 		<p>Description: {{c.description}}</p>
 		<hr>
@@ -87,7 +88,7 @@
 
 
 <!-- end of results -->
-
+	<script src="/javascripts/user-firebase.js"></script>
 
 </body>
 </html>

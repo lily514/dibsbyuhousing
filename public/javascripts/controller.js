@@ -55,6 +55,10 @@ function nextPrev(n) {
 
 
 	function submit() {
-		window.open("/browse","_self");
+		angular.element(document.getElementById('search-form')).scope().setFilter();
+		document.getElementById("filter").style.display = "none";
+		document.getElementById("results").style.display = "block";
+		
+
 	}
 

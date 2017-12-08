@@ -20,6 +20,7 @@ var config = {
     messagingSenderId: "697111180927"
 };
 firebase.initializeApp(config);
+var storageRef = firebase.storage().ref();
 
 // Google OAuth Client ID, needed to support One-tap sign-up.
 // Set to null if One-tap sign-up is not supported.

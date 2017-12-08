@@ -9,11 +9,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<!--- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Oxygen:700|Roboto" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<!-- CSS -->
 	<link rel="stylesheet" href="stylesheets/style.css">
-	<!-- Custom Scripts -->
-	<script src="/javascripts/controller.js"></script>
-	<script src="/javascripts/nav-ctrl.js"></script>
 
 	<!-- Firebase -->
 	<script src="https://www.gstatic.com/firebasejs/live/4.3/firebase.js"></script>
@@ -21,6 +19,21 @@
     <script src="/javascripts/common.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth__en.js"></script>
 	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth.css" />
+
+
+	<!-- Angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	
+
+	<!-- Custom Scripts -->
+	<script src="/javascripts/controller.js"></script>
+	<script src="/javascripts/nav-ctrl.js"></script>
+	<script src="/javascripts/sell-contract-ctrl.js"></script>
+
+
+
+
+
 
 
 	<title>Dibs BYU Housing</title>
@@ -54,79 +67,71 @@
     </ul>
 </nav>
 <!--end of Navigation bar-->
+<div ng-app="contract" ng-controller="MainCtrl"> 
+
+<nav id="filter-navbar" class="nabvar filter">
+	<p>Filter Results</p>
+	
+
+</nav>
+<!--end of Navigation bar-->
 
 <!-- beginning of questionairre -->
-<div class="container">
+<div class="container" id="filter">
 	<form id="search-form" class="quiz" action="">
 		<div class="tab">
 			<div class="quiz-header">
 				<h3>What type of contract are you looking for?</h3>
 			</div>
-			<div class="quiz-content" data-toggle="buttons">
-				<label class="btn btn-secondary btn-lg btn-quiz active">
-					 <input type="radio" name="options" id="option1" autocomplete="off" checked>Family
-				</label>
-				<label class="btn btn-secondary btn-lg btn-quiz">
-						<input type="radio" name="options" id="option2" autocomplete="off">Women
-				</label>
-				<label class="btn btn-secondary btn-lg btn-quiz">
-						<input type="radio" name="options" id="option3" autocomplete="off">Men
-				</label>
-		 </div>
-	 </div>
+    		<div class="quiz-content">
+			 		<span ng-repeat="category in categories" data-toggle="buttons" ng-check="selectedCategory == category"
+						 ng-click="toggleCategory(category)">
+			 		<label class="btn btn-secondary" >
+						 <input class="category-radio" 
+						 type="radio" 
+						 autocomplete="off" 
+						 name="selectedCategory"
+						 value="{{category}}">{{category}}
+					</label>
+					</span>
+			</div>
+		</div>
 
 		<div class="tab">
 			<div class="quiz-header">
 				<h3>How many bedrooms are you looking for?</h3>
 			</div>
-			<div class="quiz-content" data-toggle="buttons">
-				<label class="btn btn-secondary btn-lg btn-quiz active">
-					 <input type="radio" name="options" id="option1" autocomplete="off" checked>Studio
-				</label>
-				<label class="btn btn-secondary btn-lg btn-quiz">
-						<input type="radio" name="options" id="option2" autocomplete="off">1
-				</label>
-				<label class="btn btn-secondary btn-lg btn-quiz">
-						<input type="radio" name="options" id="option3" autocomplete="off">2
-				</label>
-				<label class="btn btn-secondary btn-lg btn-quiz">
-						<input type="radio" name="options" id="option3" autocomplete="off">3+
-				</label>
-		 </div>
+		 	<div class="quiz-content">
+			 		<span ng-repeat="bed in bedrooms" data-toggle="buttons" ng-check="selectedCategory == category"
+						 ng-click="toggleBed(bed)">
+			 		<label class="btn btn-secondary" >
+						 <input class="bed-radio" 
+						 type="radio" 
+						 autocomplete="off" 
+						 name="selectedBed"
+						 value="{{bed}}"> {{bed}}
+					</label>
+					</span>
+			</div>
 		</div>
 
 		<div class="tab">
 			<div class="quiz-header">
 				<h3>What amenities are you looking for?</h3>
 			</div>
-			<div class="quiz-content" data-toggle="buttons">
-				<label class="btn btn-secondary btn-lg btn-quiz">
-					 <input type="checkbox" autocomplete="off">W/D In Unit
-				</label>
-				<label class="btn btn-secondary btn-lg btn-quiz">
-						<input type="checkbox" autocomplete="off">W/D On Site
-				</label>
-				<label class="btn btn-secondary btn-lg btn-quiz">
-						<input type="checkbox" autocomplete="off">W/D Hookups
-				</label>
-				<label class="btn btn-secondary btn-lg btn-quiz">
-						<input type="checkbox" autocomplete="off">Microwave
-				</label>
-				<label class="btn btn-secondary btn-lg btn-quiz">
-						<input type="checkbox" autocomplete="off">Dishwasher
-				</label>
-				<label class="btn btn-secondary btn-lg btn-quiz">
-						<input type="checkbox" autocomplete="off">Covered Parking
-				</label>
-				<label class="btn btn-secondary btn-lg btn-quiz">
-						<input type="checkbox" autocomplete="off">Pool
-				</label>
-				<label class="btn btn-secondary btn-lg btn-quiz">
-						<input type="checkbox" autocomplete="off">Hot tub
-				</label>
-				<label class="btn btn-secondary btn-lg btn-quiz">
-						<input type="checkbox" autocomplete="off">Gym
-				</label>
+			<div class="quiz-content">
+				<span ng-repeat="a in amenities" 
+						ng-checked="selectedAmenities.indexOf(a) > -1" 
+						ng-click="toggleAmenities(a)" 
+						data-toggle="buttons">
+			 		<label class="btn btn-secondary">
+						 <input 
+						 type="checkbox" 
+						 autocomplete="off" 
+						 name="selectedAmenities[]"
+						 value="{{a}}"> {{a}}
+					</label>
+				</span>		 		
 			</div>
 		</div>
 
@@ -145,6 +150,25 @@
 	</form>
 </div>
 <!-- end of questionairre -->
+
+<div id = "results" class="container" style="display:none;">
+	<div class="contract" data-ng-repeat="c in matching">
+			
+			<h4>{{c.category}} : Address: {{c.address}}, {{c.city}}, UT {{c.zip}} </h4>
+			<span data-ng-repeat="img in c.images"><img ng-src="{{img.url}}" style="height:20%"></span>
+			<p>Available: {{c.date}}</p>
+			<p>Rent: {{c.rent}}</p>
+			<p>Deposit: {{c.deposit}}</p>
+			<p>Bedrooms: {{c.bedrooms}}</p>
+			<p>Amenities: <span data-ng-repeat="a in c.amenities">{{a}} </span></p>
+			<p>Description: {{c.description}}</p>
+			<hr>
+			<p>Contact: {{c.sellername}} </p>
+			<p>Prefered Contact: <span data-ng-repeat="pref in c.sellerpref">{{pref}} </span></p>
+	</div>
+</div>
+
+</div>
 
 
 

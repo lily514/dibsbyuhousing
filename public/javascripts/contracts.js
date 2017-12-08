@@ -5,7 +5,6 @@ function($scope, $http) {
   $scope.contracts = [];
   $scope.contactMethods = ['Call', 'Text', 'Email'];
   $scope.selectedContactMethod = [];
-
   $scope.amenities = ['W/D In Unit', 'W/D On Site', 'W/D Hookups', 'Microwave', 'Dishwasher', 'Covered Parking', 'Pool', 'Hot tub', 'Gym'];
   $scope.selectedAmenities = [];
 
