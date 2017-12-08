@@ -58,7 +58,25 @@ function nextPrev(n) {
 		angular.element(document.getElementById('search-form')).scope().setFilter();
 		document.getElementById("filter").style.display = "none";
 		document.getElementById("results").style.display = "block";
-		
+	
+	}
+
+	function browseall(){
+		angular.element(document.getElementById('search-form')).scope().clearFilter();
+		  document.getElementById("filter").style.display = "none";
+		  document.getElementById("results").style.display = "block";
 
 	}
 
+
+$('#navbrowse').click( function(e) {
+    	  e.preventDefault();
+    	  browseall();
+  		  return false; 
+} );
+
+$('#quizbrowse').click( function(e) {
+    	  e.preventDefault();
+    	  browseall();
+  		  return false; 
+} );

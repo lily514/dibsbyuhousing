@@ -7,28 +7,53 @@ h2 {
   text-align: center;
 }
 
+h6 {
+  text-align: center;
+}
+
+#brand {
+  font-size:larger;
+/*  padding-left:.5em;*/
+}
+
+#tagline {
+  font-size:x-small;
+  color:grey;
+/*  padding-left:.5em;*/
+}
+
 #logo{
-  height: 30px;
+  height: 2em;
+  margin-right: 6em;
 }
 
 a {
   padding: 0.5em;
 }
+
+nav {
+  background-color: white;
+}
 /*.navbar-brand {
   padding: 10px 10px;
 }*/
 
+#homepage {
+  padding-top: 60px;
+}
 body {
   font: 14px "Roboto", Helvetica, Arial, sans-serif;
   background-color: lightgrey;
 }
 
 .contract {
-  background-color: white;
+  margin:20px;
+  background-color:white;
   border-radius: 25px;
-  padding:25px;
-  margin-top:25px;
+  padding-bottom: 25px;
+  text-align:left;
 }
+
 
 .filter {
   color: white;
@@ -52,6 +77,7 @@ body {
     border-top-right-radius: 25px;
     padding: 10px;
     text-overflow: ellipsis;
+    text-align:center;
 }
 
 .quiz-content {
@@ -137,4 +163,54 @@ a {
 .upload-drop-zone.drop {
   color: #222;
   border-color: #222;
+}
+
+.sidebar {
+  position: fixed;
+  top: 51px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+/*  border-right: 1px solid #eee;*/
+  background-color: grey;
+  color:white;
+}
+
+/* Sidebar navigation */
+.sidebar {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar .nav {
+  margin-bottom: 20px;
+}
+
+.sidebar .nav-item {
+  width: 100%;
+}
+
+.sidebar .nav-item + .nav-item {
+  margin-left: 0;
+}
+
+.sidebar .nav-link {
+  border-radius: 0;
+}
+
+/*
+ * Dashboard
+ */
+
+ /* Placeholders */
+.placeholders {
+  padding-bottom: 3rem;
+}
+
+.placeholder img {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }

@@ -74,6 +74,11 @@ function($scope, $http) {
     });
   }
 
+  $scope.toggleCategoryPref = function toggleCategory(cat){
+    console.log("Todo: change filter");
+    
+  }
+
 
     $scope.toggleBed = function toggleBed(bed){
     console.log(bed);
@@ -122,6 +127,14 @@ function($scope, $http) {
        $scope.matching.push(contract);
       }
     });
+    console.log($scope.matching);
+    $scope.$apply();
+ }
+
+
+  $scope.clearFilter = function(){
+    $scope.matching = $scope.contracts;
+    console.log("in clear Filter");
     console.log($scope.matching);
     $scope.$apply();
  }
