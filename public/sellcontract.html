@@ -33,30 +33,43 @@
 </head>
 <body>
 <!--Navigation bar-->
-<nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
-<!--     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
-    <a class="navbar-brand" href="/">
-    	<img id="logo" src="/images/house.ico">
-    	Dibs
-    </a>
+<nav class="navbar navbar-toggleable-md navbar-light fixed-top">
+      <!-- <button class="navbar-toggler navbar-toggler-right hidden-lg-up collapsed" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+      <a class="navbar-brand" href="#">
+      	<span class="row">
+      		<span class="col-sm-3">
+      		<img id="logo" src="/images/house.ico">
+      		</span>
+      		<span class="col-sm-7">
+	      		<span id="brand" class="row">Dibs</span>
+	      		<span id="tagline" class="row">BYU Housing Contracts made easy.</span>
+	      	</span>
+      	</span>
+      </a>
+<!--       <div class="navbar-collapse collapse" id="navbarsExampleDefault" aria-expanded="false" style="">
+        <ul class="navbar-nav mr-auto"> -->
     <div class="mr-auto"></div>
-    <ul class="navbar-nav d-flex justify-content-end collapse">
-      <li class="nav-item">
-        <a class="nav-link" href="/browse">Browse</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/sellcontract">Sell Contract</a>
-      </li>
-      <li id="nav-user-signed-out" class="nav-item">
-        <a class="nav-link" href="/signin">Login</a>
-      </li>
-      <li id="nav-user-signed-in" class="hidden nav-item">
-        <a class="nav-link" href="/signin">Account</a>
-      </li>
-    </ul>
+    <ul class="navbar-nav d-flex justify-content-end">
+	      <li class="nav-item">
+	        <a id="navbrowse" class="nav-link" href="#">Browse</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/sellcontract">Sell Contract</a>
+	      </li>
+	      <li id="nav-user-signed-out" class="nav-item">
+	        <a class="nav-link" href="/signin">Login</a>
+	      </li>
+	      <li id="nav-user-signed-in" class="hidden nav-item">
+	        <a class="nav-link" href="/signin">Account</a>
+	      </li>
+        </ul>
+      </div>
 </nav>
+
+
+<!--end of Navigation bar-->
 <!--end of Navigation bar-->
 
 	<div ng-app="contract" ng-controller="MainCtrl" class="container">
@@ -250,15 +263,19 @@
     	</div> <!-- /container -->
   	</div>
 
-  	<div class="form-group row center">
-  		<button id="saveBtn" type="button" class="btn btn-secondary">Save Draft</button>
+<!--   	<div class="form-group row"> -->
+  		<h2>
+  		<button id="saveBtn" type="button" class="btn btn-secondary" disabled>Save Draft</button>
   		<button id="submitBtn" type="submit" class="btn btn-info">Submit</button>
-  	</div>
+  		</h2>
+<!--   	</div> -->
 
 	</form>
 	<script src="/javascripts/user-firebase.js"></script>
 	<script src="/javascripts/debug-contract.js"></script>
 	<script src="/javascripts/sell-contract-ctrl.js"></script>
+	<script src="/javascripts/browse.js"></script>
+
 	</div>
 	</div>
 

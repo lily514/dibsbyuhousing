@@ -33,70 +33,89 @@
 </head>
 <body>
 <!--Navigation bar-->
-<!-- <div id="nav-placeholder">
-</div>
-<script>
-$(function(){
-  $("#nav-placeholder").load("nav.html");
-});
-</script> -->
-<nav class="navbar navbar-toggleable-sm  navbar-light bg-faded">
-<!--     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
-    <a class="navbar-brand" href="/">
-      <img id="logo" src="/images/house.ico">
-      Dibs
-    </a>
+<nav class="navbar navbar-toggleable-md navbar-light fixed-top">
+      <!-- <button class="navbar-toggler navbar-toggler-right hidden-lg-up collapsed" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+      <a class="navbar-brand" href="#">
+        <span class="row">
+          <span class="col-sm-3">
+          <img id="logo" src="/images/house.ico">
+          </span>
+          <span class="col-sm-7">
+            <span id="brand" class="row">Dibs</span>
+            <span id="tagline" class="row">BYU Housing Contracts made easy.</span>
+          </span>
+        </span>
+      </a>
+<!--       <div class="navbar-collapse collapse" id="navbarsExampleDefault" aria-expanded="false" style="">
+        <ul class="navbar-nav mr-auto"> -->
     <div class="mr-auto"></div>
-    <ul class="navbar-nav d-flex justify-content-end collapse">
-      <li class="nav-item">
-        <a class="nav-link" href="/browse">Browse</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/sellcontract">Sell Contract</a>
-      </li>
-      <li id="nav-user-signed-out" class="nav-item">
-        <a class="nav-link" href="/signin">Login</a>
-      </li>
-      <li id="nav-user-signed-in" class="hidden nav-item">
-        <a class="nav-link" href="/signin">Account</a>
-      </li>
-    </ul>
+    <ul class="navbar-nav d-flex justify-content-end">
+        <li class="nav-item">
+          <a id="navbrowse" class="nav-link" href="#">Browse</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sellcontract">Sell Contract</a>
+        </li>
+        <li id="nav-user-signed-out" class="nav-item">
+          <a class="nav-link" href="/signin">Login</a>
+        </li>
+        <li id="nav-user-signed-in" class="hidden nav-item">
+          <a class="nav-link" href="/signin">Account</a>
+        </li>
+        </ul>
+      </div>
 </nav>
-
-
-
 <!--end of Navigation bar-->
-    <div id="container" class="quiz">
-      <h2 class="quiz-header">Sign In or Create Account</h2>
+
       <div id="loading">Loading...</div>
       <div id="loaded" class="hidden">
+      </div>
+
+    <div id="user-signed-out" class="quiz hidden">
+      <h2 class="quiz-header">Sign In or Create Account</h2>
         <div id="main">
-          <div id="user-signed-in" class="hidden">
+          	<p>An account is required to post a contract for sale or save a search filter</p>
+            <div id="firebaseui-spa">
+              <div id="firebaseui-container"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="user-signed-in" class="quiz hidden">
+      <h2 class="quiz-header">My Account</h2>
+        <div id="main">
+          <div>
             <div id="user-info">
-              <div id="photo-container">
-                <img id="photo">
-              </div>
               <div id="name"></div>
               <div id="email"></div>
               <div id="phone"></div>
               <div class="clearfix"></div>
             </div>
+            <p></p>
             <p>
-              <button id="sign-out">Sign Out</button>
-              <button id="delete-account">Delete account</button>
+              <button class="btn btn-primary btn-large" id="sign-out">Sign Out</button>
+              <button class="btn btn-danger btn-large" id="delete-account">Delete account</button>
             </p>
-          </div>
-          <div id="user-signed-out" class="hidden">
-          	<p>An account is required to post a contract for sale or save a search filter</p>
-            <div id="firebaseui-spa">
-              <div id="firebaseui-container"></div>
+            <div class="row">
+              <div class="col-sm-6">
+                <h6>My Contracts for Sell:</h6>
+              </div>
+              <div class="col-sm-6">
+                <h6>My Saves</h6>
+              </div>
+
             </div>
+
+
           </div>
         </div>
-      </div>
     </div>
+
     <script src="/javascripts/user-firebase.js"></script>
+    <script src="/javascripts/browse.js"></script>
   </body>
 </html>
