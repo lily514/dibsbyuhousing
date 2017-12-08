@@ -76,6 +76,16 @@ function($scope, $http) {
 
   $scope.toggleCategoryPref = function toggleCategory(cat){
     console.log("Todo: change filter");
+    $scope.selectedCategory = cat;
+    $scope.setFilter();
+    
+  }
+
+
+  $scope.toggleBedsPref = function toggleBeds(cat){
+    console.log("Todo: change filter");
+    $scope.selectedBed = cat;
+    $scope.setFilter();
     
   }
 
@@ -122,9 +132,9 @@ function($scope, $http) {
     console.log($scope.filter);
     $scope.matching.length = 0;
     Array.from($scope.contracts).forEach(function(contract) {
-      console.log(contract.category);
+      console.log(contract);
       if (contract.category == $scope.filter.category){
-       $scope.matching.push(contract);
+          $scope.matching.push(contract);      
       }
     });
     console.log($scope.matching);
@@ -241,19 +251,6 @@ function($scope, $http) {
     });  
   };
 
-  $scope.ondrop = function(e) {
-          document.getElementById('drop-zone').className = 'upload-drop-zone';
-          $scope.files = e.dataTransfer.files;
-      }
-
-  $scope.ondragover = function() {
-          document.getElementById('drop-zone').className = 'upload-drop-zone drop';
-      }
-
-  $scope.ondragleave = function() {
-          document.getElementById('drop-zone').className = 'upload-drop-zone';
-      }
-
 
   $scope.addContractElement = function(data) {
     console.log("in add contract element");
@@ -301,4 +298,19 @@ commentsRef.on('child_removed', function(data) {
 });
 
 
+
+  ondrop = function(e) {
+          document.getElementById('drop-zone').className = 'upload-drop-zone';
+          $scope.files = e.dataTransfer.files;
+      }
+
+  ondragover = function() {
+          document.getElementById('drop-zone').className = 'upload-drop-zone drop';
+          $scope.$apply();
+      }
+
+  ondragleave = function() {
+          document.getElementById('drop-zone').className = 'upload-drop-zone';
+          $scope.$apply();
+      }
 

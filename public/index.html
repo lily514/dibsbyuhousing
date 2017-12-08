@@ -36,10 +36,10 @@
 <body>
 <!--Navigation bar-->
 <nav class="navbar navbar-toggleable-md navbar-light fixed-top">
-      <!-- <button class="navbar-toggler navbar-toggler-right hidden-lg-up collapsed" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler navbar-toggler-right hidden-lg-up collapsed" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button> -->
-      <a class="navbar-brand" href="#">
+      </button>
+      <a class="navbar-brand" href="/">
       	<span class="row">
       		<span class="col-sm-3">
       		<img id="logo" src="/images/house.ico">
@@ -50,8 +50,8 @@
 	      	</span>
       	</span>
       </a>
-<!--       <div class="navbar-collapse collapse" id="navbarsExampleDefault" aria-expanded="false" style="">
-        <ul class="navbar-nav mr-auto"> -->
+      <div class="navbar-collapse collapse" id="navbarsExampleDefault" aria-expanded="false" style="">
+<!--         <ul class="navbar-nav mr-auto"> -->
         	<div class="mr-auto"></div>
     <ul class="navbar-nav d-flex justify-content-end">
 	      <li class="nav-item">
@@ -76,6 +76,7 @@
 <div id="homepage" ng-app="contract" ng-controller="MainCtrl">
 
 <!-- beginning of questionairre -->
+<main>
 <div class="container" id="filter">
 	<form id="search-form" class="quiz" action="">
 		<div class="tab">
@@ -148,74 +149,80 @@
 
 	</form>
 </div>
+</main>
 <!-- end of questionairre -->
 
-<div id = "results" class="container-fluid" style="display:none;">
-	<div class="row">
-	<nav class="col-sm-5 col-md-2 hidden-xs-down bg-faded sidebar">
-		<h6>Filters</h6>
-		<ul>
-<!-- 		<span ng-repeat="category in categories" data-toggle="buttons" ng-check="selectedCategory == category"
-						 ng-click="toggleCategory(category)">
-			 		<label class="btn-sm btn-secondary" >
-						 <input class="category-radio" 
-						 type="radio" 
-						 autocomplete="off" 
-						 name="selectedCategory"
-						 value="{{category}}">{{category}}
-					</label>
-			</span> -->
-			<div class="dropdown">
-			  <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownContract" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Contract Type
-			  </button>
-			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			  	<span ng-repeat="category in categories" ng-click="toggleCategoryPref(category)">
-			  		<a class="dropdown-item" href="">{{category}}</a>
-				</span>
-			  </div>
+<div id = "results" class="" style="display:none;">
+	<div id="navfilter" class="nav navbar navbar-light bg-faded">
+		<div class="row">
+			<div class="col-sm-1">
+				<a class="navbar-brand" href="#">Filters</a>
 			</div>
-			<div class="dropdown">
-			  <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Bedrooms
-			  </button>
-			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			    <a class="dropdown-item" href="">1</a>
-			    <a class="dropdown-item" href="">2</a>
-			    <a class="dropdown-item" href="">3+</a>
-			  </div>
-			</div>
+		<div class="col-sm-3">
+		<ul class="nav">
+            <li class="btn-group">
+                <button class="dropdown-toggle btn btn-secondary" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Category
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <span ng-repeat="category in categories" ng-click="toggleCategoryPref(category)">
+				  		<a class="dropdown-item" href="">{{category}}</a>
+					</span>
+                </div>
+		    </li>
+		    <li class="btn-group">
+                <button class="dropdown-toggle btn btn-secondary" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Bedrooms
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <span ng-repeat="bed in bedrooms" ng-click="toggleBedPref(bed)">
+				  		<a class="dropdown-item" href="">{{bed}}</a>
+					</span>
+                </div>
+		    </li>
 		</ul>
+		</div>
+		<div class="col-sm-8">
+			<span class="form-check-inline" ng-repeat="a in amenities">
+					<label class="form-check-label">
+					  <input class="form-check-input" type="checkbox" value="{{a}}">{{a}}
+					</label>
+			</span>
+		</div>
+		</div>
+	</div>
 
-	</nav>
-	<main class="col-sm-7 offset-sm-3 col-md-10 offset-md-2-pt-3">
+	<main class="">
 	<div class="contract" data-ng-repeat="c in matching">
 			
 			<div class="quiz-header">
-				<h4>{{c.category}}<h4>
+				<h4>{{c.category}}</h4>
 				<p>Address: {{c.address}}, {{c.city}}, UT {{c.zip}}</p>
 			</div>
 			<div class="contract">
+				<div class="row" style="text-align: center">
+					<div class="col-sm-3"><p><strong>Available:</strong></p> <p>{{c.date}}</p></div>
+					<div class="col-sm-3"><p><strong>Rent:</strong></p> <p>${{c.rent}}</p></div>
+					<div class="col-sm-3"><p><strong>Deposit:</strong></p> <p>${{c.deposit}}</p></div>
+					<div class="col-sm-3"><p><strong>Bedrooms:</strong></p> <p>{{c.bedrooms}}</p></div>
+				</div>
+				<p></p>
+				
 				<span data-ng-repeat="img in c.images"><img ng-src="{{img.url}}" style="height:20%"></span>
-				<p>Available: {{c.date}}</p>
-				<p>Rent: {{c.rent}}</p>
-				<p>Deposit: {{c.deposit}}</p>
-				<p>Bedrooms: {{c.bedrooms}}</p>
-				<p>Amenities: <span data-ng-repeat="a in c.amenities">{{a}} </span></p>
-				<p>Description: {{c.description}}</p>
+				<p></p>
+				<p><strong>Description:</strong> {{c.description}}</p>
+				<p></p>
+				<p><strong>Amenities:</strong> 
+					<span ng-repeat="a in c.amenities">{{a}}, </span>
+				</p>
 				<hr>
-				<p>Contact: {{c.sellername}} </p>
-				<p>Prefered Contact: <span data-ng-repeat="pref in c.sellerpref">{{pref}} </span></p>
+				<p><strong>Contact:</strong> {{c.sellername}} </p>
+				<p><strong>Preferred Contact Method:</strong> <span data-ng-repeat="pref in c.sellerpref">{{pref}} </span></p>
 			</div>
-	</div>
+		</div>
 </main>
 </div>
 </div>
-
-</div>
-
-
-
 
 <!-- end of results -->
 <script src="/javascripts/user-firebase.js"></script>
