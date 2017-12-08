@@ -35,7 +35,7 @@
 </head>
 <body>
 <!--Navigation bar-->
-<nav class="navbar navbar-toggleable-md navbar-light fixed-top">
+<nav class="navbar navbar-toggleable-md navbar-light">
       <button class="navbar-toggler navbar-toggler-right hidden-lg-up collapsed" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -102,7 +102,7 @@
 				<h3>How many bedrooms are you looking for?</h3>
 			</div>
 		 	<div class="quiz-content">
-			 		<span ng-repeat="bed in bedrooms" data-toggle="buttons" ng-check="selectedCategory == category"
+			 		<span ng-repeat="bed in bedrooms" data-toggle="buttons" ng-check="selectedCategory == bed"
 						 ng-click="toggleBed(bed)">
 			 		<label class="btn btn-secondary" >
 						 <input class="bed-radio" 
