@@ -63,7 +63,7 @@ function nextPrev(n) {
 
 	function browseall(){
 		angular.element(document.getElementById('search-form')).scope().clearFilter();
-		  document.getElementById("filter").style.display = "none";
+ 		  document.getElementById("filter").style.display = "none";
 		  document.getElementById("results").style.display = "block";
 
 	}

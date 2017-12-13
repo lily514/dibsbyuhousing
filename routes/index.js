@@ -18,12 +18,17 @@ router.get('/signin', function(req, res, next){
 });
 
 router.get('/browse', function(req, res, next){
-    res.sendFile(path.join(__dirname+'/../public/browse.html'));
+    res.sendFile(path.join(__dirname+'/../public/index.html'));
 });
 
 router.get('/widget', function(req, res, next){
     res.sendFile(path.join(__dirname+'/../public/widget.html'));
 });
+
+router.get('/index', function(req, res, next){
+    res.sendFile(path.join(__dirname+'/../public/index.html'));
+});
+
 
 router.post('/sellcontract', function(req, res, next){
 	console.log("In post contract");

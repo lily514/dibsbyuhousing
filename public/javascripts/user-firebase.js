@@ -70,12 +70,21 @@ var signInWithPopup = function() {
  * @param {!firebase.User} user
  */
 var handleSignedInUser = function(user) {
-  document.getElementById('user-signed-in').style.display = 'block';
-  document.getElementById('user-signed-out').style.display = 'none';
+  if (document.getElementById('user-signed-in')){
+    document.getElementById('user-signed-in').style.display = 'block';
+    document.getElementById('user-signed-out').style.display = 'none';
+  }
   navSignedInUser();
-  document.getElementById('name').textContent = user.displayName;
-  document.getElementById('email').textContent = user.email;
-  document.getElementById('phone').textContent = user.phoneNumber;
+  if(document.getElementById('sell-form')){
+    document.getElementById('name').value = user.displayName;
+    document.getElementById('email').value = user.email;
+    document.getElementById('phone').value = user.phoneNumber;
+  } else {
+    document.getElementById('name').textContent = user.displayName;
+    document.getElementById('email').textContent = user.email;
+    document.getElementById('phone').textContent = user.phoneNumber;
+  }
+  
   // if (user.photoURL){
   //   document.getElementById('photo').src = user.photoURL;
   //   document.getElementById('photo').style.display = 'block';

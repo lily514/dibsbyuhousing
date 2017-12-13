@@ -3,13 +3,10 @@ h1 {
   text-align: center;
 }
 
-h2 {
+h2, h3, h6 {
   text-align: center;
 }
 
-h6 {
-  text-align: center;
-}
 
 main {
   padding-left:15%;
@@ -57,13 +54,7 @@ nav {
   padding: 1em;
 /*  background-color: grey;*/
 }
-/*.navbar-brand {
-  padding: 10px 10px;
-}*/
 
-/*#homepage {
-  padding-top: 60px;
-}*/
 body {
 /*  padding-top: 60px;*/
   font: 14px "Roboto", Helvetica, Arial, sans-serif;
@@ -74,14 +65,14 @@ body {
   margin:20px;
   background-color:white;
   border-radius: 25px;
-  padding-bottom: 25px;
+  padding-bottom: 10px;
   text-align:left;
 }
 
 
 .filter {
   color: white;
-  background-color: orange;
+  background-color: #5bc0de;
   padding:25px;
   vertical-align: center;
 }
@@ -96,7 +87,7 @@ body {
 
 .quiz-header{
     color: white;
-    background-color: orange;
+    background-color: #5bc0de;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     padding: 10px;
@@ -112,8 +103,16 @@ body {
   padding: 5px;
 }
 
+.padded {
+  margin-left: 5px;
+}
+
 a {
-  color: #00B7FF;
+  color: #5bc0de;
+}
+
+.multiselect-container>li>a>label {
+	padding: 3px 3px 3px 10px;
 }
 
 #nextBtn, #prevBtn, {

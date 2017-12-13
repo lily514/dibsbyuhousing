@@ -1,16 +1,23 @@
-angular.module('contract', [])
+angular.module('contract', ["firebase"])
 .controller('MainCtrl', [
-'$scope','$http',
-function($scope, $http) {
+'$scope','$http', '$firebaseArray',
+function($scope, $http, $firebaseArray) {
   $scope.newContractKey = "";
 
   $scope.contracts = [];
+
   $scope.files = [];
+
+  $scope.userId = "";
+
+
+  $scope.datelong=new Date();//
 
   $scope.contactMethods = ['Call', 'Text', 'Email'];
   $scope.selectedContactMethod = [];
 
-  $scope.amenities = ['W/D In Unit', 'W/D On Site', 'W/D Hookups', 'Microwave', 'Dishwasher', 'Covered Parking', 'Pool', 'Hot tub', 'Gym'];
+  $scope.amenities = ['W/D In Unit', 'W/D On Site', 'W/D Hookups', 'Microwave', 'Dishwasher', 'Covered Parking', 'Pool', 'Hot tub', 'Gym', 
+  'Dogs Allowed', 'Cats Allowed', 'Utilities Included', 'Furnished', 'Shared Bedroom', 'Private Bedroom'];
   $scope.selectedAmenities = [];
 
   $scope.categories = ["Family", "Women", "Men"];
@@ -23,7 +30,10 @@ function($scope, $http) {
 
   $scope.filter = [];
 
-  $scope.matching = ["hello"];
+  $scope.matching = [];
+  $scope.missing = [];
+
+  $scope.months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   $scope.toggleContact = function toggleContact(methodName){
   	console.log(methodName);
@@ -75,20 +85,21 @@ function($scope, $http) {
   }
 
   $scope.toggleCategoryPref = function toggleCategory(cat){
-    console.log("Todo: change filter");
+    console.log("in toggle category pref");  
     $scope.selectedCategory = cat;
-    $scope.setFilter();
-    
+    $scope.Filter();
   }
 
-
-  $scope.toggleBedsPref = function toggleBeds(cat){
-    console.log("Todo: change filter");
-    $scope.selectedBed = cat;
-    $scope.setFilter();
-    
+  $scope.toggleBedPref = function toggleBed(bed){
+    console.log("in toggle bed pref");  
+    $scope.selectedBed = bed;
+    $scope.Filter();
   }
 
+  $scope.toggleAmenityPref = function toggleAmenity(a){
+    console.log("in toggle amenity pref");
+    console.log(a);  
+  }
 
     $scope.toggleBed = function toggleBed(bed){
     console.log(bed);
@@ -111,19 +122,18 @@ function($scope, $http) {
 
   $scope.create = function(contract) {
   	console.log(contract);
-    return $http.post('/sellcontract', contract).success(function(data){
+        return $http.post('/sellcontract', contract).success(function(data){
         $scope.contracts.push(data);
+
     });
   };
 
   $scope.save = function() {
     var uid = firebase.auth().currentUser.uid;
     $scope.writeNewContract(uid);
-
  }
 
-  $scope.setFilter = function(){
-    console.log("in set filter");
+  $scope.Filter = function(){
     $scope.filter = {
       amenities: $scope.selectedAmenities,
       category: $scope.selectedCategory,
@@ -131,39 +141,93 @@ function($scope, $http) {
     }
     console.log($scope.filter);
     $scope.matching.length = 0;
+    $scope.missing.length = 0;
     Array.from($scope.contracts).forEach(function(contract) {
       console.log(contract);
-      if (contract.category == $scope.filter.category){
-          $scope.matching.push(contract);      
-      }
+        if (contract.category == $scope.filter.category){
+          if ($scope.filter.bedrooms == ""){
+            $scope.matching.push(contract);
+          }
+          else {
+            if( contract.bedrooms == $scope.filter.bedrooms){
+              
+                // if ($scope.filter.amenities.length != 0){
+                //   var found = false;
+                //   var almost = jQuery.extend(true, {}, contract);
+                //   var missing_a = [];
+                //   for(var i = 0; i < $scope.filter.amenities.length; i++) {
+                //       if ($scope.filter.amenities[i] in contract.amenities) {
+                //           found = true;
+                //           break;
+                //       }
+                //       else {
+                //         missing_a.push($scope.filter.amenities[i]);
+                //       }
+                //   }
+                //   if (missing_a.length != 0){
+                //     almost.missing = missing_a;
+                //     $scope.matching.push(almost); 
+                //   }
+                //   else{
+                //     $scope.matching.push(contract); 
+                //   }
+                // }
+                $scope.matching.push(contract);
+
+
+            }
+            else {
+              var almost = jQuery.extend(true, {}, contract);
+              almost.missing = "Bedrooms do not match";
+              $scope.missing.push(almost);
+            }
+          }
+        }
     });
     console.log($scope.matching);
+  }
+
+
+
+  $scope.setFilter = function(){
+    console.log("in set filter");
+    $scope.Filter();
     $scope.$apply();
  }
 
 
   $scope.clearFilter = function(){
-    $scope.matching = $scope.contracts;
+    $scope.matching = $scope.contracts.slice();
     console.log("in clear Filter");
     console.log($scope.matching);
     $scope.$apply();
  }
 
-
    $scope.writeNewContract = function(userId) {
     console.log("in writeNewContract");
     console.log($scope.selectedCategory);
     console.log(userId);
+    $scope.userId = userId;
+    var d=$scope.datelong;
+    var year=d.getFullYear();
+    var m=d.getMonth();
+    var month = $scope.months[m];
+    var day=d.getDate();
+    var date = month+ " " + day + ", " + year;
+    console.log(date);
+
+    //validation??
+
     var contractData = {
       userId: userId,
-      sellername: $scope.sellername,
-      selleremail: $scope.selleremail,
-      sellertel: $scope.sellertel,
-      sellerpref: $scope.selectedContactMethod,
+      sellername: $('#name').val(),
+      selleremail: $('#email').val(),
+      sellertel: $('#phone').val(),
       amenities: $scope.selectedAmenities,
       category: $scope.selectedCategory,
       bedrooms: $scope.selectedBed,
-      date: $scope.date,
+      date: date,
+      datelong: $scope.datelong,
       address: $scope.address,
       city: $scope.city,
       zip: $scope.zip,
@@ -182,7 +246,6 @@ function($scope, $http) {
   updates['/user-contracts/' + userId + '/' + $scope.newContractKey] = contractData;
 
   firebase.database().ref().update(updates);
-
   }
 
   $scope.startUpload = function() {
@@ -258,11 +321,17 @@ function($scope, $http) {
     $scope.contracts.push(data);
   }
 
+  $scope.addMyContractElement = function(uid) {
+    $scope.userId = uid;
+    console.log($scope.userId)
+    $scope.myContracts = $firebaseArray(firebase.database().ref('user-contracts/'+$scope.userId));
+  }
+
   var contractsRef = firebase.database().ref('contracts/');
   contractsRef.on('child_added', function(data) {
       console.log("child added!");
       $scope.addContractElement(data.val());
-          $scope.$apply();
+      $scope.$apply();
    });
 
   contractsRef.on('child_changed', function(data) {
@@ -278,24 +347,17 @@ function($scope, $http) {
     // deleteComment(postElement, data.key);
   });
 
+  // var userContractsRef = firebase.database().ref('user-contracts/');
+  // userContractsRef.on('child_added', function(data) {
+  //     console.log("child added!");
 
+  //     $scope.addMyContractElement(data.val());
+  //     $scope.$apply();
+  //  });
 
 }
 ]);
 
-
-var commentsRef = firebase.database().ref('contracts/');
-commentsRef.on('child_added', function(data) {
-  console.log("child added!");
-});
-
-commentsRef.on('child_changed', function(data) {
-  console.log("child changed!");
-});
-
-commentsRef.on('child_removed', function(data) {
-  console.log("child removed!");
-});
 
 
 
@@ -313,4 +375,14 @@ commentsRef.on('child_removed', function(data) {
           document.getElementById('drop-zone').className = 'upload-drop-zone';
           $scope.$apply();
       }
+
+
+  function save(){
+    angular.element(document.getElementById('sell-form')).scope().save()
+    window.open ('/','_self',false);
+  }
+
+  function addMyContracts(uid){
+    angular.element(document.getElementById('myContracts')).scope().addMyContractElement(uid);
+  }
 

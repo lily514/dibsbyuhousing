@@ -9,14 +9,6 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-	<!-- Angular -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-	<!--- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Oxygen:700|Roboto" rel="stylesheet">
-	<!-- CSS -->
-	<link rel="stylesheet" href="stylesheets/style.css">
-
-
 	<!-- Firebase -->
 	<script src="https://www.gstatic.com/firebasejs/live/4.3/firebase.js"></script>
 	<script src="/javascripts/config.js"></script>
@@ -25,7 +17,15 @@
 	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth.css" />
 
 
+	<!-- Angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<!-- AngularFire -->
+	<script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
 
+	<!--- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Oxygen:700|Roboto" rel="stylesheet">
+	<!-- CSS -->
+	<link rel="stylesheet" href="stylesheets/style.css">
 
 	<title>Dibs BYU Housing</title>
 	<LINK REL="SHORTCUT ICON"
@@ -53,7 +53,7 @@
         	<div class="mr-auto"></div>
     <ul class="navbar-nav d-flex justify-content-end">
 	      <li class="nav-item">
-	        <a id="navbrowse" class="nav-link" href="#">Browse</a>
+	        <a id="navbrowse" class="nav-link" href="/">Browse</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="/sellcontract">Sell Contract</a>
@@ -70,35 +70,45 @@
 
 <!--end of Navigation bar-->
 <!--end of Navigation bar-->
-
+<main>
 	<div ng-app="contract" ng-controller="MainCtrl" class="container">
+
+		<div id="loading">Loading...</div>
+	      <div id="loaded" class="hidden">
+	      </div>
+
+
 		<div class="quiz">
 			<div class="quiz-header">
 					<h2>Sell Contract</h2>
 			</div>
-		<form id="sell-form" class="quiz-content" action="" ng-submit="save()">
-				<h2>Contact Information</h2>
+
+		<form id="sell-form" name="sell-form" class="quiz-content" action="">
+			<div class="row" style="color:red" >
+					<span class="col-sm-12" style="text-align: center"><p>All fields are required</p></span>
+				</div>
+			<h3>Contact Information</h3>
 			<div class="form-group row">
   			<label for="contact-name" class="col-sm-2 col-form-label">Name</label>
   			<div class="col-sm-10">
-    			<input ng-model="sellername" class="form-control" type="text" value="" id="contact-name" placeholder="Name of Seller">
+    			<input class="form-control" type="text" id="name" required>
 			  </div>
 			</div>
 			<div class="form-group row">
 			  <label for="contact-email" class="col-sm-2 col-form-label">Email</label>
 			  <div class="col-sm-10">
-			    <input ng-model="selleremail" class="form-control" type="email" value="" id="contact-email" placeholder="">
+			    <input class="form-control" type="email" id="email" required>
 			  </div>
 			</div>
 			<div class="form-group row">
 			  <label for="contact-tel" class="col-sm-2 col-form-label">Phone</label>
 			  <div class="col-sm-10">
-			    <input ng-model="sellertel" class="form-control" type="tel" value="1-(555)-555-5555" id="contact-tel">
+			    <input class="form-control" type="tel" id="phone" required>
 			  </div>
 			</div>
 <!-- angularjs + bootstrap buttons -->
 
-			<div class="form-group row">
+<!-- 			<div class="form-group row">
 			 	<label class="col-sm-2 col-form-label" >Preferred Contact Method</label>
 			 	<div class="col-sm-10">
 			 		<span ng-repeat="contactMethod in contactMethods" ng-checked="selectedContactMethod.indexOf(contactMethod) > -1" 
@@ -112,73 +122,78 @@
 					</label>
 					</span>
 				</div>
-			</div>
+			</div> -->
 
 			<hr>
 
-			<h2> Property Information </h2>
+			<h3> Property Information </h3>
 			<!-- date available -->
 			<div class="form-group row">
 			  <label for="date-available" class="col-sm-2 col-form-label">Date Available</label>
 			  <div class="col-sm-10">
-			    <input ng-model="date" class="form-control" type="date" value="2011-08-19" id="date-available">
+			    <input ng-model="datelong" class="form-control" type="date" id="date-available">
 			  </div>
 			</div>
 			 <!-- address-line1 input-->
 			<div class="form-group row">
 			    <label class="col-sm-2 col-form-label">Address</label>
 			    <div class="col-sm-10">
-			        <input ng-model="address" id="address-line1" name="address-line" type="text" placeholder="address line 1"
-			        class="form-control">
+			        <input ng-model="address" id="address-line1" name="address-line" type="text" class="form-control" required>
 			    </div>
 			</div>
 			<!-- city input-->
 			<div class="form-group row">
 			    <label class="col-sm-2 col-form-label">City</label>
 			    <div  class="col-sm-10">
-			        <input ng-model="city" id="city" name="city" type="text" placeholder="city" class="form-control">
+			        <input ng-model="city" id="city" name="city" type="text" class="form-control" required>
 			    </div>
 			</div>
 			<!-- postal-code input-->
 			<div class="form-group row">
 			    <label class="col-sm-2 col-form-label">Zip Code</label>
 			    <div class="col-sm-10">
-			        <input ng-model="zip" id="postal-code" name="postal-code" type="text" placeholder="zip or postal code"
-			        class="form-control">
+			        <input ng-model="zip" id="postal-code" name="postal-code" type="text" class="form-control" required>
 			    </div>
 			</div>
 			<div class="form-group row">
 			  <label for="rent-usd" class="col-sm-2 col-form-label">Rent</label>
 			  <div class="col-sm-10">
-			    <input ng-model="rent" class="form-control" type="number" value="" id="rent-usd">
+			    <input ng-model="rent" class="form-control" type="number" value="" id="rent-usd" required>
 			  </div>
 			</div>
 
 			<div class="form-group row">
 			  <label for="deposit-usd" class="col-sm-2 col-form-label">Deposit</label>
 			  <div class="col-sm-10">
-			    <input ng-model="deposit" class="form-control" type="number" value="" id="deposit-usd">
+			    <input ng-model="deposit" class="form-control" type="number" value="" id="deposit-usd" required>
 			  </div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Contract Type</label>
+				<div class="col-sm-2 col-form-label">
+					<label>Contract Type</label>
+					<small id="contractTypeHelp" class="form-text text-muted">Select one</small>
+				</div>
 				<div class="col-sm-10">
 			 		<span ng-repeat="category in categories" data-toggle="buttons" ng-check="selectedCategory == category"
 						 ng-click="toggleCategory(category)">
 			 		<label class="btn btn-secondary" >
-						 <input class="category-radio" 
+						 <input class="category-radio sr-only" 
 						 type="radio" 
 						 autocomplete="off" 
 						 name="selectedCategory"
 						 value="{{category}}"> {{category}}
 					</label>
 					</span>
+<!-- 					<h1>{{sell-form.$valid}}</h1> -->
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Bedrooms</label>
+				<div class="col-sm-2 col-form-label">
+					<label>Bedrooms</label>
+					<small id="bedroomHelp" class="form-text text-muted">Select one</small>
+				</div>
 				<div class="col-sm-10">
 			 		<span ng-repeat="bed in bedrooms" data-toggle="buttons" ng-check="selectedCategory == category"
 						 ng-click="toggleBed(bed)">
@@ -190,14 +205,18 @@
 						 value="{{bed}}"> {{bed}}
 					</label>
 					</span>
+					
 				</div>
 		 </div>
 
 
 		<div class="form-group row">
-		 	<label class="col-sm-2 col-form-label">Amenities</label>
+		 	<div class="col-sm-2 col-form-label">
+		 		<label>Amenities</label>
+		 		<small id="amenitiesHelp" class="form-text text-muted">Select all that apply</small>
+		 	</div>
 		 	<div class="col-sm-10">
-				<span ng-repeat="a in amenities" 
+				<span ng-repeat="a in amenities | orderBy: 'toString()'" 
 						ng-checked="selectedAmenities.indexOf(a) > -1" 
 						ng-click="toggleAmenities(a)" 
 						data-toggle="buttons">
@@ -208,7 +227,8 @@
 						 name="selectedAmenities[]"
 						 value="{{a}}"> {{a}}
 					</label>
-				</span>		 		
+				</span>	
+					 		
 			</div>
 		</div>
 
@@ -221,7 +241,7 @@
 		<div class="form-group row">
 		  <label for="description" class="col-sm-2 col-form-label">Description</label>
 		  <div class="col-sm-10">
-		  	<textarea ng-model="description" class="form-control" rows="5" id="description"></textarea>
+		  	<textarea ng-model="description" class="form-control" rows="5" id="description" required></textarea>
 		  </div>
 		</div>
 
@@ -240,10 +260,10 @@
 <!--           </form> -->
 
           <!-- Drop Zone -->
-          <p>Or drag and drop files below</p>
+<!--           <p>Or drag and drop files below</p>
           <div class="upload-drop-zone" id="drop-zone">
             Just drag and drop files here
-          </div>
+          </div> -->
 
 <!--           <!-- Progress Bar -->
           <div class="progress">
@@ -264,19 +284,20 @@
 
 <!--   	<div class="form-group row"> -->
   		<h2>
-  		<button id="saveBtn" type="button" class="btn btn-secondary" disabled>Save Draft</button>
-  		<button id="submitBtn" type="submit" class="btn btn-info">Submit</button>
+<!--   		<button id="saveBtn" type="button" class="btn btn-secondary" disabled>Save Draft</button> -->
+  		<button id="submitBtn" type="button" class="btn btn-info" onclick="save()">Submit</button>
   		</h2>
 <!--   	</div> -->
 
 	</form>
 	<script src="/javascripts/user-firebase.js"></script>
-	<script src="/javascripts/debug-contract.js"></script>
+<!-- 	<script src="/javascripts/debug-contract.js"></script> -->
 	<script src="/javascripts/sell-contract-ctrl.js"></script>
 	<script src="/javascripts/browse.js"></script>
 
 	</div>
 	</div>
+</main>
 
 </body>
 </html>

@@ -19,6 +19,13 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <!-- AngularFire -->
+  <script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
+
 	
 	<!--- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Oxygen:700|Roboto" rel="stylesheet">
@@ -53,7 +60,7 @@
           <div class="mr-auto"></div>
     <ul class="navbar-nav d-flex justify-content-end">
         <li class="nav-item">
-          <a id="navbrowse" class="nav-link" href="#">Browse</a>
+          <a id="navbrowse" class="nav-link" href="/">Browse</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/sellcontract">Sell Contract</a>
@@ -72,7 +79,7 @@
       <div id="loading">Loading...</div>
       <div id="loaded" class="hidden">
       </div>
-
+<main>
     <div id="user-signed-out" class="quiz hidden">
       <h2 class="quiz-header">Sign In or Create Account</h2>
         <div id="main">
@@ -102,10 +109,13 @@
             </p>
             <div class="row">
               <div class="col-sm-6">
-                <h6>My Contracts for Sell:</h6>
+                <h6>Favorites</h6>
+
               </div>
-              <div class="col-sm-6">
-                <h6>My Saves</h6>
+              <div  ng-app="contract" ng-controller="MainCtrl" class="col-sm-6">
+                <h6 id="myContracts" name="myContracts">My Contracts</h6>
+                <p ng-repeat="item in myContracts">{{ item.address }}</p>
+
               </div>
 
             </div>
@@ -114,8 +124,16 @@
           </div>
         </div>
     </div>
-
+  </main>
     <script src="/javascripts/user-firebase.js"></script>
-    <script src="/javascripts/browse.js"></script>
+    <script src="/javascripts/sell-contract-ctrl.js"></script>
+    <script type="text/javascript">
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          console.log(user.uid);
+          addMyContracts(user.uid);
+          
+      }});
+    </script>
   </body>
 </html>

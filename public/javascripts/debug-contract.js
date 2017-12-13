@@ -9,9 +9,9 @@ $( document ).ready(function() {
     input = $("#contact-tel");
     input.val("509-388-6270");
     input.trigger('change');
-    input = $("#date-available");
-    input.val("2017-11-25");
-    input.trigger('change');
+    // input = $("#date-available");
+    // input.val("2017-11-25");
+    // input.trigger('change');
     input = $("#address-line1");
     input.val("42 Wallaby Way");
     input.trigger('change');
