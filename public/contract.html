@@ -1,0 +1,136 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Dibs BYU Housing</title>
+
+
+    <script src="https://www.gstatic.com/firebasejs/live/4.3/firebase.js"></script>
+    <script src="/javascripts/config.js"></script>
+    <script src="/javascripts/common.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth__en.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth.css" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+  <!--- Bootstrap -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-cookies.js"></script>
+  <!-- AngularFire -->
+  <script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
+
+  
+  <!--- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Oxygen:700|Roboto" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <!-- icons -->
+  <script src="https://use.fontawesome.com/6b60c719b3.js"></script>
+  <!-- Custom Scripts -->
+  <script src="/javascripts/nav-ctrl.js"></script>
+
+  <title>Dibs BYU Housing</title>
+  <LINK REL="SHORTCUT ICON"
+         HREF="/images/house.ico"></LINK>
+</head>
+<body>
+<!--Navigation bar-->
+<nav class="navbar navbar-toggleable-md navbar-light">
+      <button class="navbar-toggler navbar-toggler-right hidden-lg-up collapsed" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        <span class="row">
+          <span class="col-sm-3">
+          <img id="logo" src="/images/house.ico">
+          </span>
+          <span class="col-sm-7">
+            <span id="brand" class="row">Dibs</span>
+            <span id="tagline" class="row">BYU Housing Contracts made easy.</span>
+          </span>
+        </span>
+      </a>
+      <div class="navbar-collapse collapse" id="navbarsExampleDefault" aria-expanded="false" style="">
+<!--         <ul class="navbar-nav mr-auto"> -->
+          <div class="mr-auto"></div>
+    <ul class="navbar-nav d-flex justify-content-end">
+        <li class="nav-item">
+          <a id="navbrowse" class="nav-link" href="#">Browse</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sellcontract">Sell Contract</a>
+        </li>
+        <li id="nav-user-signed-out" class="nav-item">
+          <a class="nav-link" href="/signin">Login</a>
+        </li>
+        <li id="nav-user-signed-in" class="hidden nav-item">
+          <a class="nav-link" href="/signin">Account</a>
+        </li>
+        </ul>
+      </div>
+    </nav>
+
+
+<!--end of Navigation bar-->
+
+<div id="homepage" ng-app="contract" ng-controller="ContractCtrl">
+
+<div id="individualcontract" class="">
+<!-- beginning of filtered results -->
+
+  <main class="">
+  <div class="contract" ng-repeat="c in contracts" id="{{c.key}}">
+      
+      <div class="quiz-header">
+        <h4>{{c.category}}</h4>
+        <p>Address: {{c.address}}, {{c.city}}, UT {{c.zip}}</p>
+      </div>
+      <div class="contract">
+        <div class="row" style="text-align: center">
+          <div class="col-sm-3"><p><strong>Available:</strong></p> <p>{{c.date}}</p></div>
+          <div class="col-sm-3"><p><strong>Rent:</strong></p> <p>${{c.rent}}</p></div>
+          <div class="col-sm-3"><p><strong>Deposit:</strong></p> <p>${{c.deposit}}</p></div>
+          <div class="col-sm-3"><p><strong>Bedrooms:</strong></p> <p>{{c.bedrooms}}</p></div>
+        </div>
+        <p></p>
+        
+        <span data-ng-repeat="img in c.images"><img ng-src="{{img.url}}" style="height:20%"></span>
+        <p></p>
+        <p><strong>Description:</strong> {{c.description}}</p>
+        <p></p>
+        <p><strong>Amenities:</strong> 
+          <span ng-repeat="a in c.amenities | orderBy:'toString()'">{{a}}{{$last ? '' : ', '}}</span>
+        </p>
+        <hr>
+        <div class="row" style="text-align: center">
+          <div class="col-sm-3"><p><strong>Contact: </strong>{{c.sellername}} </p></div>
+          <div class="col-sm-6"><p><strong>Email: </strong><a href="mailto:{{c.selleremail}}">{{c.selleremail}}</a></p></div>
+          <div class="col-sm-3"><p><strong>Phone: </strong>{{c.sellertel}}</p></div>
+        </div>
+      </div>
+      <h2>
+        <!-- <button class="favoriteButton btn btn-warning" ng-click="addFavorite(c)">Favorite <i class="fa fa-star" aria-hidden="true"></i></button> -->
+      </h2>
+    </div>
+
+</main>
+</div>
+</div>
+
+<!-- end of results -->
+<script src="/javascripts/user-firebase.js"></script>
+<script src="/javascripts/sell-contract-ctrl.js"></script>
+<script src="/javascripts/nav-ctrl.js"></script>
+
+</body>
+</html>
+
+

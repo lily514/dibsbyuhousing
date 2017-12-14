@@ -65,6 +65,16 @@ function nextPrev(n) {
 		angular.element(document.getElementById('search-form')).scope().clearFilter();
  		  document.getElementById("filter").style.display = "none";
 		  document.getElementById("results").style.display = "block";
+		    if(firebase.auth().currentUser){
+		        $('.hiddenButton').each(function(){
+		          $(this).attr('disabled', false);
+		        });
+		    }
+		    else {
+		        $('.hiddenButton').each(function(){
+		          $(this).attr('disabled', true);
+		        });
+		    }
 
 	}
 

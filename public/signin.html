@@ -10,7 +10,7 @@
 	<script src="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth__en.js"></script>
 	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/2.5.1/firebase-ui-auth.css" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
@@ -23,8 +23,11 @@
 
   <!-- Angular -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-cookies.js"></script>
   <!-- AngularFire -->
-  <script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js">
+    
+  </script>
 
 	
 	<!--- Fonts -->
@@ -85,7 +88,7 @@
     <div id="user-signed-out" class="quiz hidden">
       <h2 class="quiz-header">Sign In or Create Account</h2>
         <div id="main">
-          	<p>An account is required to post a contract for sale or save a search filter</p>
+          	<p>An account is required to post a contract for sale.</p>
             <div id="firebaseui-spa">
               <div id="firebaseui-container"></div>
             </div>
@@ -110,13 +113,9 @@
               <button class="btn btn-danger btn-large" id="delete-account">Delete account</button>
             </p>
             <div class="row">
-              <div class="col-sm-6">
-                <h6>Favorites</h6>
-
-              </div>
-              <div   ng-app="contract" ng-controller="MainCtrl" class="col-sm-6">
+              <div ng-app="contract" ng-controller="MainCtrl" class="col-sm-12">
                 <h6 id="myContracts" name="myContracts">My Contracts</h6>
-                <p ng-repeat="item in myContracts">{{item.date}} : {{ item.address }}, {{item.city}} <span ng-click="deleteMyContract(item)"><i class="fa fa-trash" aria-hidden="true"></i></span></p>
+                <p ng-repeat="item in myContracts"><span ng-click="goTo(item)">{{item.date}} : {{ item.address }}, {{item.city}}</span> <span ng-click="deleteMyContract(item)"><i class="fa fa-trash" aria-hidden="true"></i></span></p>
 
               </div>
 
@@ -132,16 +131,12 @@
     <script type="text/javascript">
       $( document ).ready(function() {
           console.log( "ready!" );
-          if(firebase.auth().currentUser){
-            addMyContracts(firebase.auth().currentUser.uid);
-          }
+          firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            addMyContracts(user.uid);
+        }});
       });
-      // firebase.auth().onAuthStateChanged(function(user) {
-      //   if (user) {
-      //     console.log(user.uid);
-      //     addMyContracts(user.uid);
-          
-      // }});
+      
     </script>
   </body>
 </html>

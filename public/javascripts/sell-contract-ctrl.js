@@ -1,7 +1,37 @@
-angular.module('contract', ["firebase"])
-.controller('MainCtrl', [
-'$scope','$http', '$firebaseArray',
-function($scope, $http, $firebaseArray) {
+var app = angular.module('contract', ["firebase", "ngCookies"]);
+
+// app.factory('//ContractService', //ContractService);
+
+// function //ContractService (){
+// 	var savedData = {};
+// 	function set(data){
+// 		savedData = data; 
+// 	}
+// 	function get() {
+// 		return savedData;
+// 	}
+
+// 	return {
+// 		set: set,
+// 		get: get,
+
+// 	}
+// }
+
+app.controller('ContractCtrl', [
+	'$scope', '$http', '$cookies',
+	function($scope, $http, $cookies,){
+		var c = JSON.parse($cookies.get('contract'));
+		$scope.contracts = [];
+    $scope.contracts.push(c);
+    console.log($scope.contracts);
+
+}]);
+
+app.controller('MainCtrl', [
+'$scope','$http', '$firebaseArray', '$cookies',
+function($scope, $http, $firebaseArray, $cookies) {
+
   $scope.newContractKey = "";
 
   $scope.contracts = [];
@@ -18,13 +48,13 @@ function($scope, $http, $firebaseArray) {
 
   $scope.amenities = ['W/D In Unit', 'W/D On Site', 'W/D Hookups', 'Microwave', 'Dishwasher', 'Covered Parking', 'Pool', 'Hot tub', 'Gym', 
   'Dogs Allowed', 'Cats Allowed', 'Utilities Included', 'Furnished', 'Private Room'];
-  $scope.selectedAmenities = [];
+  //$scope.selectedAmenities = [];
 
   $scope.categories = ["Family", "Women", "Men"];
-  $scope.selectedCategory = "";
+  //$scope.selectedCategory = "";
 
   $scope.bedrooms = ["Studio", "1", "2", "3+"]; //shared or private?
-  $scope.selectedBed = "";  
+  //$scope.selectedBed = "";  
 
   $scope.pictures = [];
 
@@ -96,8 +126,10 @@ function($scope, $http, $firebaseArray) {
     $scope.Filter();
   }
 
-  $scope.toggleAmenityPref = function toggleAmenity(a){
+  $scope.toggleAmenityPref = function(a){
     console.log("in toggle amenity pref");
+    $scope.selectedAmenities.push(a);
+    $scope.Filter();
     console.log(a);  
   }
 
@@ -216,6 +248,17 @@ function($scope, $http, $firebaseArray) {
 
  }
 
+ $scope.goTo = function(contract){
+ 	console.log(contract);
+ 	//ContractService.set(contract);
+ 	$cookies.putObject('contract', contract);
+ 	window.open("/contract", "_self", false);
+ }
+
+ $scope.myFilter = function (item) { 
+    return item.key == $scope.key; 
+};
+
   $scope.Filter = function(){
     $scope.filter = {
       amenities: $scope.selectedAmenities,
@@ -233,29 +276,31 @@ function($scope, $http, $firebaseArray) {
           }
           else {
             if( contract.bedrooms == $scope.filter.bedrooms){
-              
-                // if ($scope.filter.amenities.length != 0){
-                //   var found = false;
-                //   var almost = jQuery.extend(true, {}, contract);
-                //   var missing_a = [];
-                //   for(var i = 0; i < $scope.filter.amenities.length; i++) {
-                //       if ($scope.filter.amenities[i] in contract.amenities) {
-                //           found = true;
-                //           break;
-                //       }
-                //       else {
-                //         missing_a.push($scope.filter.amenities[i]);
-                //       }
-                //   }
-                //   if (missing_a.length != 0){
-                //     almost.missing = missing_a;
-                //     $scope.matching.push(almost); 
-                //   }
-                //   else{
-                //     $scope.matching.push(contract); 
-                //   }
-                // }
-                $scope.matching.push(contract);
+
+                if ($scope.filter.amenities && $scope.filter.amenities.length != 0){
+                  var found = false;
+                  var almost = jQuery.extend(true, {}, contract);
+                  var missing_a = [];
+                  for(var i = 0; i < $scope.filter.amenities.length; i++) {
+                      if ($scope.filter.amenities[i] in contract.amenities) {
+                          found = true;
+                          break;
+                      }
+                      else {
+                        missing_a.push($scope.filter.amenities[i]);
+                      }
+                  }
+                  if (missing_a.length != 0){
+                    almost.missing = missing_a;
+                    $scope.missing.push(almost); 
+                  }
+                  else{
+                    $scope.matching.push(contract); 
+                  }
+                } else {
+                  $scope.matching.push(contract);  
+                }
+                
 
 
             }
@@ -398,7 +443,6 @@ function($scope, $http, $firebaseArray) {
     });  
   };
 
-
   $scope.addContractElement = function(data) {
     console.log("in add contract element");
     console.log(data);
@@ -407,8 +451,18 @@ function($scope, $http, $firebaseArray) {
 
   $scope.addMyContractElement = function(uid) {
     $scope.userId = uid;
-    console.log($scope.userId)
     $scope.myContracts = $firebaseArray(firebase.database().ref('user-contracts/'+$scope.userId));
+  }
+
+  $scope.setUserId = function(uid){
+    $scope.userId = uid;
+  }
+
+  $scope.addFavorite = function(contract) {
+  	console.log("in favorite");
+  	$scope.myFavorites = $firebaseArray(firebase.database().ref('user-favorites/'+$scope.userId));
+  	$scope.myFavorites.$add(contract.key);
+
   }
 
   $scope.deleteMyContract = function(contract) {
@@ -451,7 +505,6 @@ function($scope, $http, $firebaseArray) {
 
 
 
-
   ondrop = function(e) {
           document.getElementById('drop-zone').className = 'upload-drop-zone';
           $scope.files = e.dataTransfer.files;
@@ -471,7 +524,7 @@ function($scope, $http, $firebaseArray) {
   function save(){
   	if (angular.element(document.getElementById('sell-form')).scope().validate() == true)
   	{
-	    angular.element(document.getElementById('sell-form')).scope().save()
+	    angular.element(document.getElementById('sell-form')).scope().save();
 	    window.open ('/','_self',false);
 	}
   }
@@ -482,6 +535,12 @@ function($scope, $http, $firebaseArray) {
   	}
   }
 
+  function setUID(uid){
+    if (document.getElementById('results')){
+      angular.element(document.getElementById('results')).scope().setUserId(uid);
+    }
+  }
 
  
+
 

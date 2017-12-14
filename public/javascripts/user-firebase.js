@@ -132,7 +132,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       navSignedOutUser();
     }  
    }
- 
+
 });
 
 /**

@@ -21,6 +21,10 @@ router.get('/browse', function(req, res, next){
     res.sendFile(path.join(__dirname+'/../public/index.html'));
 });
 
+router.get('/contract', function(req, res, next){
+    res.sendFile(path.join(__dirname+'/../public/contract.html'));
+});
+
 router.get('/widget', function(req, res, next){
     res.sendFile(path.join(__dirname+'/../public/widget.html'));
 });
