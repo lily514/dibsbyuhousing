@@ -88,19 +88,19 @@
 					<span class="col-sm-12" style="text-align: center"><p>All fields are required</p></span>
 				</div>
 			<h3>Contact Information</h3>
-			<div class="form-group row">
+			<div id="NameRow" class="form-group row">
   			<label for="contact-name" class="col-sm-2 col-form-label">Name</label>
   			<div class="col-sm-10">
     			<input class="form-control" type="text" id="name" required>
 			  </div>
 			</div>
-			<div class="form-group row">
+			<div id="EmailRow" class="form-group row">
 			  <label for="contact-email" class="col-sm-2 col-form-label">Email</label>
 			  <div class="col-sm-10">
 			    <input class="form-control" type="email" id="email" required>
 			  </div>
 			</div>
-			<div class="form-group row">
+			<div id="PhoneRow" class="form-group row">
 			  <label for="contact-tel" class="col-sm-2 col-form-label">Phone</label>
 			  <div class="col-sm-10">
 			    <input class="form-control" type="tel" id="phone" required>
@@ -135,41 +135,41 @@
 			  </div>
 			</div>
 			 <!-- address-line1 input-->
-			<div class="form-group row">
+			<div id="AddressRow" class="form-group row">
 			    <label class="col-sm-2 col-form-label">Address</label>
 			    <div class="col-sm-10">
 			        <input ng-model="address" id="address-line1" name="address-line" type="text" class="form-control" required>
 			    </div>
 			</div>
 			<!-- city input-->
-			<div class="form-group row">
+			<div id="CityRow" class="form-group row">
 			    <label class="col-sm-2 col-form-label">City</label>
 			    <div  class="col-sm-10">
 			        <input ng-model="city" id="city" name="city" type="text" class="form-control" required>
 			    </div>
 			</div>
 			<!-- postal-code input-->
-			<div class="form-group row">
+			<div id="ZipRow" class="form-group row">
 			    <label class="col-sm-2 col-form-label">Zip Code</label>
 			    <div class="col-sm-10">
 			        <input ng-model="zip" id="postal-code" name="postal-code" type="text" class="form-control" required>
 			    </div>
 			</div>
-			<div class="form-group row">
+			<div id="RentRow" class="form-group row">
 			  <label for="rent-usd" class="col-sm-2 col-form-label">Rent</label>
 			  <div class="col-sm-10">
 			    <input ng-model="rent" class="form-control" type="number" value="" id="rent-usd" required>
 			  </div>
 			</div>
 
-			<div class="form-group row">
+			<div id="DepositRow" class="form-group row">
 			  <label for="deposit-usd" class="col-sm-2 col-form-label">Deposit</label>
 			  <div class="col-sm-10">
 			    <input ng-model="deposit" class="form-control" type="number" value="" id="deposit-usd" required>
 			  </div>
 			</div>
 
-			<div class="form-group row">
+			<div id="ContractTypeRow" class="form-group row">
 				<div class="col-sm-2 col-form-label">
 					<label>Contract Type</label>
 					<small id="contractTypeHelp" class="form-text text-muted">Select one</small>
@@ -189,7 +189,7 @@
 				</div>
 			</div>
 
-			<div class="form-group row">
+			<div id="BedroomRow" class="form-group row">
 				<div class="col-sm-2 col-form-label">
 					<label>Bedrooms</label>
 					<small id="bedroomHelp" class="form-text text-muted">Select one</small>
@@ -210,7 +210,7 @@
 		 </div>
 
 
-		<div class="form-group row">
+		<div id="AmenitiesRow" class="form-group row">
 		 	<div class="col-sm-2 col-form-label">
 		 		<label>Amenities</label>
 		 		<small id="amenitiesHelp" class="form-text text-muted">Select all that apply</small>
@@ -238,7 +238,7 @@
 			<!-- date available -->
 
 
-		<div class="form-group row">
+		<div id="DescriptionRow" class="form-group row">
 		  <label for="description" class="col-sm-2 col-form-label">Description</label>
 		  <div class="col-sm-10">
 		  	<textarea ng-model="description" class="form-control" rows="5" id="description" required></textarea>

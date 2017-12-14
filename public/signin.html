@@ -31,6 +31,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Oxygen:700|Roboto" rel="stylesheet">
 	<!-- CSS -->
 	<link rel="stylesheet" href="stylesheets/style.css">
+  <!-- icons -->
+  <script src="https://use.fontawesome.com/6b60c719b3.js"></script>
 	<!-- Custom Scripts -->
   <script src="/javascripts/nav-ctrl.js"></script>
 
@@ -112,9 +114,9 @@
                 <h6>Favorites</h6>
 
               </div>
-              <div  ng-app="contract" ng-controller="MainCtrl" class="col-sm-6">
+              <div   ng-app="contract" ng-controller="MainCtrl" class="col-sm-6">
                 <h6 id="myContracts" name="myContracts">My Contracts</h6>
-                <p ng-repeat="item in myContracts">{{ item.address }}</p>
+                <p ng-repeat="item in myContracts">{{item.date}} : {{ item.address }}, {{item.city}} <span ng-click="deleteMyContract(item)"><i class="fa fa-trash" aria-hidden="true"></i></span></p>
 
               </div>
 
@@ -128,12 +130,18 @@
     <script src="/javascripts/user-firebase.js"></script>
     <script src="/javascripts/sell-contract-ctrl.js"></script>
     <script type="text/javascript">
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          console.log(user.uid);
-          addMyContracts(user.uid);
+      $( document ).ready(function() {
+          console.log( "ready!" );
+          if(firebase.auth().currentUser){
+            addMyContracts(firebase.auth().currentUser.uid);
+          }
+      });
+      // firebase.auth().onAuthStateChanged(function(user) {
+      //   if (user) {
+      //     console.log(user.uid);
+      //     addMyContracts(user.uid);
           
-      }});
+      // }});
     </script>
   </body>
 </html>

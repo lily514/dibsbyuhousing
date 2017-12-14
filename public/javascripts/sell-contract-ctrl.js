@@ -17,7 +17,7 @@ function($scope, $http, $firebaseArray) {
   $scope.selectedContactMethod = [];
 
   $scope.amenities = ['W/D In Unit', 'W/D On Site', 'W/D Hookups', 'Microwave', 'Dishwasher', 'Covered Parking', 'Pool', 'Hot tub', 'Gym', 
-  'Dogs Allowed', 'Cats Allowed', 'Utilities Included', 'Furnished', 'Shared Bedroom', 'Private Bedroom'];
+  'Dogs Allowed', 'Cats Allowed', 'Utilities Included', 'Furnished', 'Private Room'];
   $scope.selectedAmenities = [];
 
   $scope.categories = ["Family", "Women", "Men"];
@@ -133,6 +133,89 @@ function($scope, $http, $firebaseArray) {
     $scope.writeNewContract(uid);
  }
 
+ $scope.validate = function() {
+ 	var valid = true;
+
+	if ($('#name').val() == ""){
+		document.getElementById("NameRow").classList.add("has-danger");
+ 		valid = false;
+	} else {
+		document.getElementById("NameRow").classList.remove("has-danger");
+	}
+
+	if ($('#email').val() == ""){
+		document.getElementById("EmailRow").classList.add("has-danger");
+ 		valid = false;
+	} else {
+		document.getElementById("EmailRow").classList.remove("has-danger");
+	}
+	if ($('#phone').val() == ""){
+		document.getElementById("PhoneRow").classList.add("has-danger");
+ 		valid = false;
+	} else {
+		document.getElementById("PhoneRow").classList.remove("has-danger");
+	}
+
+	if (!$scope.address){
+		document.getElementById("AddressRow").classList.add("has-danger");
+ 		valid = false;
+	} else {
+		document.getElementById("AddressRow").classList.remove("has-danger");
+	}
+
+	if (!$scope.city){
+		document.getElementById("CityRow").classList.add("has-danger");
+ 		valid = false;
+	} else {
+		document.getElementById("CityRow").classList.remove("has-danger");
+	}
+
+	if (!$scope.zip){
+		document.getElementById("ZipRow").classList.add("has-danger");
+ 		valid = false;
+	} else {
+		document.getElementById("ZipRow").classList.remove("has-danger");
+	}
+
+	if (!$scope.rent){
+		document.getElementById("RentRow").classList.add("has-danger");
+ 		valid = false;
+	} else {
+		document.getElementById("RentRow").classList.remove("has-danger");
+	}
+
+	if (!$scope.deposit){
+		document.getElementById("DepositRow").classList.add("has-danger");
+ 		valid = false;
+	} else {
+		document.getElementById("DepositRow").classList.remove("has-danger");
+	}
+
+	if (!$scope.description){
+		document.getElementById("DescriptionRow").classList.add("has-danger");
+ 		valid = false;
+	} else {
+		document.getElementById("DescriptionRow").classList.remove("has-danger");
+	}
+
+ 	if($scope.selectedBed == []){
+ 		document.getElementById("BedroomRow").classList.add("has-danger");
+ 		valid = false;
+ 	} else {
+ 		document.getElementById("BedroomRow").classList.remove("has-danger");
+ 	}
+
+ 	if($scope.selectedCategory == []){
+ 		document.getElementById("ContractTypeRow").classList.add("has-danger");
+ 		valid = false;
+ 	} else {
+ 		document.getElementById("ContractTypeRow").classList.remove("has-danger");
+ 	}
+
+ 	return valid;
+
+ }
+
   $scope.Filter = function(){
     $scope.filter = {
       amenities: $scope.selectedAmenities,
@@ -216,7 +299,7 @@ function($scope, $http, $firebaseArray) {
     var date = month+ " " + day + ", " + year;
     console.log(date);
 
-    //validation??
+    $scope.newContractKey = firebase.database().ref().child('contracts').push().key; 
 
     var contractData = {
       userId: userId,
@@ -234,11 +317,12 @@ function($scope, $http, $firebaseArray) {
       rent: $scope.rent,
       deposit: $scope.deposit,
       images: $scope.pictures,
-      description: $scope.description
+      description: $scope.description,
+      key: $scope.newContractKey
     }
     console.log(contractData);
 	// Get a key for a new Post.
-  $scope.newContractKey = firebase.database().ref().child('contracts').push().key;  
+   
   
   // Write the new post's data simultaneously in the contracts list and the user's post list.
   var updates = {};
@@ -327,6 +411,13 @@ function($scope, $http, $firebaseArray) {
     $scope.myContracts = $firebaseArray(firebase.database().ref('user-contracts/'+$scope.userId));
   }
 
+  $scope.deleteMyContract = function(contract) {
+  	console.log("todo: delete contract");
+  	console.log(contract);
+  	firebase.database().ref().child('contracts/'+contract.key).remove();
+  	$scope.myContracts.$remove(contract);
+  }
+
   var contractsRef = firebase.database().ref('contracts/');
   contractsRef.on('child_added', function(data) {
       console.log("child added!");
@@ -334,18 +425,18 @@ function($scope, $http, $firebaseArray) {
       $scope.$apply();
    });
 
-  contractsRef.on('child_changed', function(data) {
-    console.log("child added!");
-    // setCommentValues(postElement, 
-    //   data.key, 
-    //   data.val().text, 
-    //   data.val().author);
-  });
+  // contractsRef.on('child_changed', function(data) {
+  //   console.log("child added!");
+  //   // setCommentValues(postElement, 
+  //   //   data.key, 
+  //   //   data.val().text, 
+  //   //   data.val().author);
+  // });
 
-  contractsRef.on('child_removed', function(data) {
-    console.log("child added!");
-    // deleteComment(postElement, data.key);
-  });
+  // contractsRef.on('child_removed', function(data) {
+  //   console.log("child added!");
+  //   // deleteComment(postElement, data.key);
+  // });
 
   // var userContractsRef = firebase.database().ref('user-contracts/');
   // userContractsRef.on('child_added', function(data) {
@@ -378,11 +469,19 @@ function($scope, $http, $firebaseArray) {
 
 
   function save(){
-    angular.element(document.getElementById('sell-form')).scope().save()
-    window.open ('/','_self',false);
+  	if (angular.element(document.getElementById('sell-form')).scope().validate() == true)
+  	{
+	    angular.element(document.getElementById('sell-form')).scope().save()
+	    window.open ('/','_self',false);
+	}
   }
 
   function addMyContracts(uid){
-    angular.element(document.getElementById('myContracts')).scope().addMyContractElement(uid);
+  	if (document.getElementById('myContracts')){
+  		angular.element(document.getElementById('myContracts')).scope().addMyContractElement(uid);
+  	}
   }
+
+
+ 
 
