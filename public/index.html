@@ -64,7 +64,7 @@
 	        <a id="navbrowse" class="nav-link" href="#">Browse</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="/sellcontract">Sell Contract</a>
+	        <a id="nav-sell-contract" class="nav-link" href="/sellcontract">Sell Contract</a>
 	      </li>
 	      <li id="nav-user-signed-out" class="nav-item">
 	        <a class="nav-link" href="/signin">Login</a>
@@ -239,9 +239,15 @@
 		</div>
 
 
-<div class="hidden">
+<div id="partial-matches" class="hidden">
 	<hr>
-	<h2>Similar contracts that do not match you search:</h2>
+	<h2>Partial Matches:</h2>
+	<hr>
+</div>
+
+<div id="no-matches" class="hidden">
+	<hr>
+	<h2>No Matches Found</h2>
 	<hr>
 </div>
 
@@ -262,14 +268,17 @@
 					<div class="col-sm-3"><p><strong>Bedrooms:</strong></p> <p>{{c.bedrooms}}</p></div>
 				</div>
 				<p></p>
-				
+				<div class="descr-amen">
+
 				<span data-ng-repeat="img in c.images"><img class="slide" ng-src="{{img.url}}"></span>
+				
 				<p></p>
 				<p><strong>Description:</strong> {{c.description}}</p>
 				<p></p>
 				<p><strong>Amenities:</strong> 
 					<span ng-repeat="a in c.amenities | orderBy:'toString()'">{{a}}{{$last ? '' : ', '}}</span>
 				</p>
+				</div>
 				<hr>
 				<div class="row" style="text-align: center">
 					<div class="col-sm-3"><p><strong>Contact: </strong>{{c.sellername}} </p></div>
@@ -280,6 +289,8 @@
 				<button class="btn btn-warning">Favorite <i class="fa fa-star" aria-hidden="true"></i></button>
 				<h2>
 			</div>
+	</div>
+	<div id="footer" style="padding-top: 5em">
 	</div>
 
 </main>

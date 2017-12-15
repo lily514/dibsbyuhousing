@@ -96,6 +96,7 @@ var handleSignedInUser = function(user) {
 var navSignedInUser = function () {
   document.getElementById('nav-user-signed-in').style.display = 'block';
   document.getElementById('nav-user-signed-out').style.display = 'none';
+  document.getElementById('nav-sell-contract').setAttribute('href', "/sellcontract");
 }
 
 
@@ -112,7 +113,8 @@ var handleSignedOutUser = function() {
 
 var navSignedOutUser = function() {
   document.getElementById('nav-user-signed-in').style.display = 'none';
-  document.getElementById('nav-user-signed-out').style.display = 'block';  
+  document.getElementById('nav-user-signed-out').style.display = 'block'; 
+  document.getElementById('nav-sell-contract').setAttribute('href', "/signin"); 
 }
 // Listen to change in auth state so it displays the correct UI for when
 // the user is signed in or not.

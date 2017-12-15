@@ -317,6 +317,17 @@ function($scope, $http, $firebaseArray, $cookies) {
           }
     }});
     console.log($scope.matching);
+    if($scope.missing.length > 0){
+    	document.getElementById("partial-matches").classList.remove("hidden");
+    } else {
+    	document.getElementById("partial-matches").classList.add("hidden");
+    	if($scope.matching.length > 0){
+	    	document.getElementById("no-matches").classList.add("hidden");
+	    } else {
+	    	document.getElementById("no-matches").classList.remove("hidden");
+	    }
+    }
+    
     //TODO: show "no contracts match"
   }
 

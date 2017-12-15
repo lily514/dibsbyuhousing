@@ -5,7 +5,7 @@ $( document ).ready(function() {
 	x = document.getElementsByClassName("tab");
 	showTab(currentTab); // Display the current tab
 	$("body").css({"background-image": "url('https://images.pexels.com/photos/257344/pexels-photo-257344.jpeg?w=940&h=650&dpr=2&auto=compress&cs=tinysrgb')",
- 	  "background-position": "0px -60px",
+ 	  "background-position": "100% -60px",
  	  "background-size": "cover"});
 
 });
@@ -69,10 +69,13 @@ function nextPrev(n) {
 	}
 
 	function browseall(){
-		angular.element(document.getElementById('search-form')).scope().clearFilter();
+		var scope = angular.element(document.getElementById('search-form')).scope();
+		scope.clearFilter();
+		scope.$apply();
  		  document.getElementById("filter").style.display = "none";
 		  document.getElementById("results").style.display = "block";
 		  $("body").css({"background-image":"none"});
+
 		    // if(firebase.auth().currentUser){
 		    //     $('.hiddenButton').each(function(){
 		    //       $(this).attr('disabled', false);
