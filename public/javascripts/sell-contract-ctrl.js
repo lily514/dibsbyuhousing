@@ -86,6 +86,7 @@ function($scope, $http, $firebaseArray, $cookies) {
   $scope.selectedBed = "";  
 
   $scope.pictures = [];
+  $scope.myimgs = [];
 
   $scope.filter = [];
 
@@ -377,7 +378,7 @@ function($scope, $http, $firebaseArray, $cookies) {
       zip: $scope.zip,
       rent: $scope.rent,
       deposit: $scope.deposit,
-      images: $scope.pictures,
+      images: $scope.myimgs,
       description: $scope.description,
       key: $scope.newContractKey
     }
@@ -458,7 +459,8 @@ function($scope, $http, $firebaseArray, $cookies) {
       }, function() {
         // Upload completed successfully, now we can get the download URL
         var downloadURL = uploadTask.snapshot.downloadURL;
-        $scope.pictures.push({name:file.name, url:downloadURL});
+        $scope.pictures.push({name:file.name, url: downloadURL});
+        $scope.myimgs.push({name:file.name, url: downloadURL});
         console.log($scope.pictures);
         $scope.$apply();
       });
