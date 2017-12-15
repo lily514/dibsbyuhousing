@@ -74,16 +74,8 @@ var handleSignedInUser = function(user) {
     document.getElementById('user-signed-in').style.display = 'block';
     document.getElementById('user-signed-out').style.display = 'none';
   }
-  navSignedInUser();
-  if(document.getElementById('sell-form')){
-    document.getElementById('name').value = user.displayName;
-    document.getElementById('email').value = user.email;
-    document.getElementById('phone').value = user.phoneNumber;
-  } else {
-    document.getElementById('name').textContent = user.displayName;
-    document.getElementById('email').textContent = user.email;
-    document.getElementById('phone').textContent = user.phoneNumber;
-  }
+  navSignedInUser(user);
+
   
   // if (user.photoURL){
   //   document.getElementById('photo').src = user.photoURL;
@@ -93,10 +85,20 @@ var handleSignedInUser = function(user) {
   // }
 };
 
-var navSignedInUser = function () {
+var navSignedInUser = function (user) {
   document.getElementById('nav-user-signed-in').style.display = 'block';
   document.getElementById('nav-user-signed-out').style.display = 'none';
   document.getElementById('nav-sell-contract').setAttribute('href', "/sellcontract");
+  if(document.getElementById('sell-form')){
+    document.getElementById('name').value = user.displayName;
+    document.getElementById('email').value = user.email;
+    document.getElementById('phone').value = user.phoneNumber;
+  } 
+  if(document.getElementById("sign-in-main")) {
+    document.getElementById('name').textContent = user.displayName;
+    document.getElementById('email').textContent = user.email;
+    document.getElementById('phone').textContent = user.phoneNumber;
+  }
 }
 
 
@@ -170,8 +172,9 @@ var initApp = function() {
         });    
   }
   else {
-    if (firebase.auth().currentUser) {
-      navSignedInUser();
+    var user = firebase.auth().currentUser
+    if (user) {
+      navSignedInUser(user);
     } else {
       navSignedOutUser();
     }

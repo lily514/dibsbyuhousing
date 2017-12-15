@@ -103,12 +103,14 @@
         <p></p>
         
         <span data-ng-repeat="img in c.images"><img class="slide responsive" ng-src="{{img.url}}"></span>
+        <div class="descr-amen">
         <p></p>
         <p><strong>Description:</strong> {{c.description}}</p>
         <p></p>
         <p><strong>Amenities:</strong> 
           <span ng-repeat="a in c.amenities | orderBy:'toString()'">{{a}}{{$last ? '' : ', '}}</span>
         </p>
+        </div>
         <hr>
         <div class="row" style="text-align: center">
           <div class="col-sm-3"><p><strong>Contact: </strong>{{c.sellername}} </p></div>
@@ -116,9 +118,12 @@
           <div class="col-sm-3"><p><strong>Phone: </strong>{{c.sellertel}}</p></div>
         </div>
       </div>
-      <h2>
-        <!-- <button class="favoriteButton btn btn-warning" ng-click="addFavorite(c)">Favorite <i class="fa fa-star" aria-hidden="true"></i></button> -->
-      </h2>
+      <h6>
+        <a class="btn btn-warning" role="button" href="https://mail.google.com/mail/?view=cm&fs=1&su=I wanted you to see this Housing Contract&body=Check out this housing contract: http://ec2-18-217-241-197.us-east-2.compute.amazonaws.com:3010/contract?contract={{c.key}}">
+          Share By Gmail <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+<!--        <button class="btn btn-warning">Favorite <i class="fa fa-star" aria-hidden="true"></i></button> -->
+      <h6>
     </div>
 
 </main>

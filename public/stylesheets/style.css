@@ -28,7 +28,7 @@ img.slide {
 }
 
 img.slide:hover {
-  max-width: 50%;
+  max-width: 30%;
   height: auto;
   box-shadow: 0px 0px 50px #000000;
   z-index: 2;
