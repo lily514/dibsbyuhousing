@@ -25,6 +25,7 @@
 
 	<!--- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Oxygen:700|Roboto" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<!-- CSS -->
 	<link rel="stylesheet" href="stylesheets/style.css">
 
@@ -242,36 +243,43 @@
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">Photos</label>
 			<div class="col-sm-10 container">
-          <!-- Standard Form -->
-<!--           <form action="" method="post" enctype="multipart/form-data" id="js-upload-form" onsubmit="submitUpload()"> -->
-            <div class="form-inline">
-              <div class="form-group">
-                <input type="file" name="files[]" id="js-upload-files" multiple >
-              </div>
-              <button class="btn btn-sm btn-primary" type="button" id="js-upload-submit" ng-click="startUpload()">Upload files</button>
-            </div>
-<!--           </form> -->
+	            <div class="row container">
+	                <input class="form" type="file" name="files[]" ng-model="files" id="js-upload-files" multiple >
+	            </div>
+	            <br>
+	            <div class="row container">
+	              <button class="btn btn-sm btn-primary" type="button" id="js-upload-submit" ng-click="startUpload()">Upload files</button>
+	            </div>
+	            <br>
+	            <div class="row container">
+	            	<p id="js-upload-wait" class="hidden">Processed Files:</p>
+	            	<span ng-repeat="pic in pictures" style="color:#5cb85c">
+	            		<label class="form has-success">{{pic.name}} <i class="fa fa-check" aria-hidden="true"></i></>
+				    </span>
+	            </div>
 
-          <!-- Drop Zone -->
-<!--           <p>Or drag and drop files below</p>
-          <div class="upload-drop-zone" id="drop-zone">
-            Just drag and drop files here
-          </div> -->
+	<!--           </form> -->
 
-<!-- Progress Bar -->
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-              <span class="sr-only"></span>
-            </div>
-          </div>
+	          <!-- Drop Zone -->
+	<!--           <p>Or drag and drop files below</p>
+	          <div class="upload-drop-zone" id="drop-zone">
+	            Just drag and drop files here
+	          </div> -->
 
-          <!-- Upload Finished -->
-          <div class="js-upload-finished">
-            <p>Processed files</p>
-            <div class="list-group" ng-repeat="pics in pictures">
-            	<p><{{pics.name}}</p>
-            </div>
-          </div> 
+	<!-- Progress Bar -->
+<!-- 	          <div class="progress">
+	            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+	              <span class="sr-only"></span>
+	            </div>
+	          </div> -->
+
+	          <!-- Upload Finished -->
+<!-- 	          <div class="js-upload-finished">
+	            <p>Processed files</p>
+	            <div class="list-group" ng-repeat="pics in pictures">
+	            	<p><{{pics.name}}</p>
+	            </div>
+	          </div>  -->
     	</div>
   	</div>
 
@@ -291,8 +299,6 @@
 	<script src="/javascripts/user-firebase.js"></script>
 <!-- 	<script src="/javascripts/debug-contract.js"></script> -->
 	<script src="/javascripts/sell-contract-ctrl.js"></script>
-	<script src="/javascripts/browse.js"></script>
-
 
 </main>
 

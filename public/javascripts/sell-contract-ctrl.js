@@ -395,9 +395,12 @@ function($scope, $http, $firebaseArray, $cookies) {
   }
 
   $scope.startUpload = function() {
-    $scope.files = document.getElementById('js-upload-files').files;
-    var valuern = 0;
-      Array.from($scope.files).forEach(function(file) {
+    $scope.files = document.getElementById('js-upload-files').files;   
+    $('#js-upload-files').prop('disabled', true);
+    $('#js-upload-submit').prop('disabled', true);
+    document.getElementById('js-upload-wait').classList.remove('hidden');
+    Array.from($scope.files).forEach(function(file) {
+      var valuern = 0;
       console.log(file.name);
       // Create a reference to 'mountains.jpg'
       //var photoref = storageRef.child($scope.newContractKey+"/"+ file.name);
@@ -420,7 +423,8 @@ function($scope, $http, $firebaseArray, $cookies) {
           var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           if (progress > valuern){
             valuern = progress;
-            $('.progress-bar').css('width', progress+'%').attr('aria-valuenow', progress);
+            id="#"+file.name+".progress-bar";
+            $(id).css('width', progress+'%').attr('aria-valuenow', progress);
           }
           
           console.log('Upload is ' + progress + '% done');
@@ -456,6 +460,7 @@ function($scope, $http, $firebaseArray, $cookies) {
         var downloadURL = uploadTask.snapshot.downloadURL;
         $scope.pictures.push({name:file.name, url:downloadURL});
         console.log($scope.pictures);
+        $scope.$apply();
       });
     });  
   };
