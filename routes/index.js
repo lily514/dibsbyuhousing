@@ -4,34 +4,48 @@ var path = require("path");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index');
 });
 
 
-router.get('/sellcontract', function(req, res, next){
-	res.sendFile(path.join(__dirname+'/../public/sellcontract.html'));
+// router.get('/sellcontract', function(req, res, next){
+// 	res.sendFile(path.join(__dirname+'/../public/sellcontract.html'));
+// });
+
+
+// router.get('/signin', function(req, res, next){
+//     //res.sendFile(path.join(__dirname+'/../public/signin.html'));
+//     res.render('signing');
+// });
+
+// router.get('/browse', function(req, res, next){
+// 	console.log("in browse");
+//     res.sendFile(path.join(__dirname+'/../public/index.html'));
+// });
+
+// router.get('/colorbox', function(req, res, next){
+//     res.sendFile(path.join(__dirname+'/../public/colorbox.html'));
+// });
+
+// router.get('/contract', function(req, res, next){
+//     res.sendFile(path.join(__dirname+'/../public/contract.html'));
+// });
+
+
+app.get('/contract/:tagId', function(req, res) {
+  res.send("tagId is set to " + req.params.tagId);
+  res.render('contract');
 });
 
 
-router.get('/signin', function(req, res, next){
-    res.sendFile(path.join(__dirname+'/../public/signin.html'));
-});
 
-router.get('/browse', function(req, res, next){
-    res.sendFile(path.join(__dirname+'/../public/index.html'));
-});
+// router.get('/widget', function(req, res, next){
+//     res.sendFile(path.join(__dirname+'/../public/widget.html'));
+// });
 
-router.get('/contract', function(req, res, next){
-    res.sendFile(path.join(__dirname+'/../public/contract.html'));
-});
-
-router.get('/widget', function(req, res, next){
-    res.sendFile(path.join(__dirname+'/../public/widget.html'));
-});
-
-router.get('/index', function(req, res, next){
-    res.sendFile(path.join(__dirname+'/../public/index.html'));
-});
+// router.get('/index', function(req, res, next){
+//     res.sendFile(path.join(__dirname+'/../public/index.html'));
+// });
 
 
 router.post('/sellcontract', function(req, res, next){

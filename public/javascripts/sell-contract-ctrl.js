@@ -20,11 +20,40 @@ var app = angular.module('contract', ["firebase", "ngCookies"]);
 
 app.controller('ContractCtrl', [
 	'$scope', '$http', '$cookies',
-	function($scope, $http, $cookies,){
-		var c = JSON.parse($cookies.get('contract'));
-		$scope.contracts = [];
-    $scope.contracts.push(c);
-    console.log($scope.contracts);
+	function($scope, $http, $cookies){
+		$scope.getCookies = function(){
+			if($cookies.get('contract')){
+				var c = JSON.parse($cookies.get('contract'));
+				$scope.contracts = [];
+			    $scope.contracts.push(c);
+			    console.log($scope.contracts);	
+		    }
+		    else {
+
+			  var queryString = window.location.search.slice(1);
+			  // if query string exists
+			  if (queryString) {
+			  	console.log(queryString);
+			    var arr = queryString.split('=');
+			    var ckey = arr[1];
+			    console.log(ckey);
+
+			    var c;
+			    firebase.database().ref().child('/contracts/'+ckey)
+				    .once('value')
+				    .then(function(snapshot) {
+				      c = snapshot.val();
+				      $scope.contracts = [];
+					  $scope.contracts.push(c);
+					  $scope.$apply();
+					    console.log($scope.contracts);
+				    })
+			    
+			  }
+
+		    }	
+		};	
+		$scope.getCookies();
 
 }]);
 
@@ -48,13 +77,13 @@ function($scope, $http, $firebaseArray, $cookies) {
 
   $scope.amenities = ['W/D In Unit', 'W/D On Site', 'W/D Hookups', 'Microwave', 'Dishwasher', 'Covered Parking', 'Pool', 'Hot tub', 'Gym', 
   'Dogs Allowed', 'Cats Allowed', 'Utilities Included', 'Furnished', 'Private Room'];
-  //$scope.selectedAmenities = [];
+  $scope.selectedAmenities = [];
 
   $scope.categories = ["Family", "Women", "Men"];
-  //$scope.selectedCategory = "";
+  $scope.selectedCategory = "";
 
   $scope.bedrooms = ["Studio", "1", "2", "3+"]; //shared or private?
-  //$scope.selectedBed = "";  
+  $scope.selectedBed = "";  
 
   $scope.pictures = [];
 
@@ -126,12 +155,12 @@ function($scope, $http, $firebaseArray, $cookies) {
     $scope.Filter();
   }
 
-  $scope.toggleAmenityPref = function(a){
-    console.log("in toggle amenity pref");
-    $scope.selectedAmenities.push(a);
-    $scope.Filter();
-    console.log(a);  
-  }
+  // $scope.toggleAmenityPref = function(a){
+  //   console.log("in toggle amenity pref");
+  //   $scope.selectedAmenities.push(a);
+  //   $scope.Filter();
+  //   console.log(a);  
+  // }
 
     $scope.toggleBed = function toggleBed(bed){
     console.log(bed);
@@ -163,6 +192,7 @@ function($scope, $http, $firebaseArray, $cookies) {
   $scope.save = function() {
     var uid = firebase.auth().currentUser.uid;
     $scope.writeNewContract(uid);
+
  }
 
  $scope.validate = function() {
@@ -261,7 +291,7 @@ function($scope, $http, $firebaseArray, $cookies) {
 
   $scope.Filter = function(){
     $scope.filter = {
-      amenities: $scope.selectedAmenities,
+      // amenities: $scope.selectedAmenities,
       category: $scope.selectedCategory,
       bedrooms: $scope.selectedBed
     }
@@ -276,43 +306,18 @@ function($scope, $http, $firebaseArray, $cookies) {
           }
           else {
             if( contract.bedrooms == $scope.filter.bedrooms){
-
-                if ($scope.filter.amenities && $scope.filter.amenities.length != 0){
-                  var found = false;
-                  var almost = jQuery.extend(true, {}, contract);
-                  var missing_a = [];
-                  for(var i = 0; i < $scope.filter.amenities.length; i++) {
-                      if ($scope.filter.amenities[i] in contract.amenities) {
-                          found = true;
-                          break;
-                      }
-                      else {
-                        missing_a.push($scope.filter.amenities[i]);
-                      }
-                  }
-                  if (missing_a.length != 0){
-                    almost.missing = missing_a;
-                    $scope.missing.push(almost); 
-                  }
-                  else{
-                    $scope.matching.push(contract); 
-                  }
-                } else {
-                  $scope.matching.push(contract);  
-                }
-                
-
-
+            	$scope.matching.push(contract);
             }
             else {
               var almost = jQuery.extend(true, {}, contract);
               almost.missing = "Bedrooms do not match";
               $scope.missing.push(almost);
+
             }
           }
-        }
-    });
+    }});
     console.log($scope.matching);
+    //TODO: show "no contracts match"
   }
 
 
@@ -366,6 +371,7 @@ function($scope, $http, $firebaseArray, $cookies) {
       key: $scope.newContractKey
     }
     console.log(contractData);
+    $cookies.putObject('contract', contractData);
 	// Get a key for a new Post.
    
   
@@ -525,7 +531,7 @@ function($scope, $http, $firebaseArray, $cookies) {
   	if (angular.element(document.getElementById('sell-form')).scope().validate() == true)
   	{
 	    angular.element(document.getElementById('sell-form')).scope().save();
-	    window.open ('/','_self',false);
+	    window.open ('/contract','_self',false);
 	}
   }
 

@@ -52,7 +52,7 @@
       		</span>
       		<span class="col-sm-7">
 	      		<span id="brand" class="row">Dibs</span>
-	      		<span id="tagline" class="row">BYU Housing Contracts made easy.</span>
+	      		<span id="tagline" class="row">Buy and sell BYU student housing contracts.</span>
 	      	</span>
       	</span>
       </a>
@@ -87,12 +87,12 @@
 	<form id="search-form" class="quiz" action="">
 		<div class="tab">
 			<div class="quiz-header">
-				<h3>What type of contract are you looking for?</h3>
+				<h3>What type of housing contract are you looking for?</h3>
 			</div>
     		<div class="quiz-content">
 			 		<span ng-repeat="category in categories" data-toggle="buttons" ng-check="selectedCategory == category"
 						 ng-click="toggleCategory(category)">
-			 		<label class="btn btn-secondary" >
+			 		<label class="btn btn-secondary btn-lg" >
 						 <input class="category-radio" 
 						 type="radio" 
 						 autocomplete="off" 
@@ -110,7 +110,7 @@
 		 	<div class="quiz-content">
 			 		<span ng-repeat="bed in bedrooms" data-toggle="buttons" ng-check="selectedCategory == bed"
 						 ng-click="toggleBed(bed)">
-			 		<label class="btn btn-secondary" >
+			 		<label class="btn btn-secondary btn-lg" >
 						 <input class="bed-radio" 
 						 type="radio" 
 						 autocomplete="off" 
@@ -121,7 +121,7 @@
 			</div>
 		</div>
 
-		<div class="tab">
+<!-- 		<div class="tab">
 			<div class="quiz-header">
 				<h3>What amenities are you looking for?</h3>
 			</div>
@@ -139,14 +139,12 @@
 					</label>
 				</span>		 		
 			</div>
-		</div>
+		</div> -->
 
 		<div class="quiz-footer">
 			<button id="prevBtn" class="btn btn-info btn-submit" type="button" onclick="nextPrev(-1)">Previous</button>
 			<button id="nextBtn" class="btn btn-info btn-submit" type="button" onclick="nextPrev(1)">Next</button>
 			<div>
-			  <span class="step"></span>
-			  <span class="step"></span>
 			  <span class="step"></span>
 			  <span class="step"></span>
 			</div>
@@ -189,14 +187,14 @@
 		    </li>
 		</ul>
 		</div>
-		<div class="col-sm-8">
+<!-- 		<div class="col-sm-8">
 			<div class="container">
 			  <label>Amenities:</label>
 			    <select class="btn btn-secondary" id="multiple-checkboxes" multiple="multiple">
 			    	<option ng-repeat="a in amenities | orderBy:'toString()'" value="{{a}}" ng-click="toggleAmenityPref(a)">{{a}}</option>
 			    </select>
 			</div>
-		</div>
+		</div> -->
 		</div>
 	</div>
 <!-- end of nav filters -->
@@ -218,7 +216,7 @@
 				</div>
 				<p></p>
 				
-				<span data-ng-repeat="img in c.images"><img ng-src="{{img.url}}" style="height:20%"></span>
+				<span data-ng-repeat="img in c.images"><img class="slide" ng-src="{{img.url}}"></span>
 				<p></p>
 				<p><strong>Description:</strong> {{c.description}}</p>
 				<p></p>
@@ -232,9 +230,12 @@
 					<div class="col-sm-3"><p><strong>Phone: </strong>{{c.sellertel}}</p></div>
 				</div>
 			</div>
-			<h2>
-				<button class="btn btn-warning">Favorite <i class="fa fa-star" aria-hidden="true"></i></button>
-			<h2>
+			<h6>
+				<a class="btn btn-warning" role="button" href="https://mail.google.com/mail/?view=cm&fs=1&su=I wanted you to see this Housing Contract&body=Check out this housing contract: http://ec2-18-217-241-197.us-east-2.compute.amazonaws.com:3010/contract?contract={{c.key}}.">
+				  Share By Gmail <i class="fa fa-envelope" aria-hidden="true"></i>
+				</a>
+<!-- 				<button class="btn btn-warning">Favorite <i class="fa fa-star" aria-hidden="true"></i></button> -->
+			<h6>
 		</div>
 
 
@@ -262,7 +263,7 @@
 				</div>
 				<p></p>
 				
-				<span data-ng-repeat="img in c.images"><img ng-src="{{img.url}}" style="height:20%"></span>
+				<span data-ng-repeat="img in c.images"><img class="slide" ng-src="{{img.url}}"></span>
 				<p></p>
 				<p><strong>Description:</strong> {{c.description}}</p>
 				<p></p>

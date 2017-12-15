@@ -63,7 +63,7 @@
           <div class="mr-auto"></div>
     <ul class="navbar-nav d-flex justify-content-end">
         <li class="nav-item">
-          <a id="navbrowse" class="nav-link" href="#">Browse</a>
+          <a id="navbrowse" class="nav-link" href="/">Browse</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/sellcontract">Sell Contract</a>
@@ -102,7 +102,7 @@
         </div>
         <p></p>
         
-        <span data-ng-repeat="img in c.images"><img ng-src="{{img.url}}" style="height:20%"></span>
+        <span data-ng-repeat="img in c.images"><img class="slide responsive" ng-src="{{img.url}}"></span>
         <p></p>
         <p><strong>Description:</strong> {{c.description}}</p>
         <p></p>

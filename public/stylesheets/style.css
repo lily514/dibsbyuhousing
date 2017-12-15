@@ -13,6 +13,38 @@ main {
   padding-right:15%;
 }
 
+img.slide {
+  object-fit: cover;
+  height: 25%;
+  -webkit-transition: all 200ms ease-in;
+  -webkit-transform: scale(1);
+  -ms-transition: all 200ms ease-in;
+  -ms-transform: scale(1);
+  -moz-transition: all 200ms ease-in;
+  -moz-transform: scale(1);
+  transition: all 200ms ease-in;
+  transform: scale(1);
+  margin: 1%
+}
+
+img.slide:hover {
+  max-width: 50%;
+  height: auto;
+  box-shadow: 0px 0px 50px #000000;
+  z-index: 2;
+  -webkit-transition: all 200ms ease-in;
+  -webkit-transform: scale(1.2);
+  -ms-transition: all 200ms ease-in;
+  -ms-transform: scale(1.2);
+  -moz-transition: all 200ms ease-in;
+  -moz-transform: scale(1.2);
+  transition: all 200ms ease-in;
+  transform: scale(1.2);
+}
+
+
+
+
 .fakebutton{
   background-color: white;
   border-color: #lightgrey;
@@ -42,6 +74,16 @@ a {
   padding: 0.5em;
 }
 
+.link {
+  color: #5bc0de;
+  text-decoration:underline;
+}
+
+.link:hover {
+  color:navy;
+  text-decoration:underline;
+}
+
 nav {
   background-color: white;
 }
@@ -61,6 +103,10 @@ body {
   background-color: lightgrey;
 }
 
+#filter {
+  padding-top: 5em;
+}
+
 .contract {
   margin:20px;
   background-color:white;
@@ -68,7 +114,6 @@ body {
   padding-bottom: 10px;
   text-align:left;
 }
-
 
 .filter {
   color: white;

@@ -1,13 +1,18 @@
 var currentTab;
-
+var x;
 $( document ).ready(function() {
 	currentTab = 0; // Current tab is set to be the first tab (0)
+	x = document.getElementsByClassName("tab");
 	showTab(currentTab); // Display the current tab
+	$("body").css({"background-image": "url('https://images.pexels.com/photos/257344/pexels-photo-257344.jpeg?w=940&h=650&dpr=2&auto=compress&cs=tinysrgb')",
+ 	  "background-position": "0px -60px",
+ 	  "background-size": "cover"});
+
 });
 
 function showTab(n) {
 	// This function will display the specified tab of the form ...
-	var x = document.getElementsByClassName("tab");
+	// var x = document.getElementsByClassName("tab");
 	x[n].style.display = "block";
 	// ... and fix the Previous/Next buttons:
 	if (n == 0) {
@@ -58,6 +63,8 @@ function nextPrev(n) {
 		angular.element(document.getElementById('search-form')).scope().setFilter();
 		document.getElementById("filter").style.display = "none";
 		document.getElementById("results").style.display = "block";
+		$("body").css({"background-image":"none"});
+
 	
 	}
 
@@ -65,16 +72,17 @@ function nextPrev(n) {
 		angular.element(document.getElementById('search-form')).scope().clearFilter();
  		  document.getElementById("filter").style.display = "none";
 		  document.getElementById("results").style.display = "block";
-		    if(firebase.auth().currentUser){
-		        $('.hiddenButton').each(function(){
-		          $(this).attr('disabled', false);
-		        });
-		    }
-		    else {
-		        $('.hiddenButton').each(function(){
-		          $(this).attr('disabled', true);
-		        });
-		    }
+		  $("body").css({"background-image":"none"});
+		    // if(firebase.auth().currentUser){
+		    //     $('.hiddenButton').each(function(){
+		    //       $(this).attr('disabled', false);
+		    //     });
+		    // }
+		    // else {
+		    //     $('.hiddenButton').each(function(){
+		    //       $(this).attr('disabled', true);
+		    //     });
+		    // }
 
 	}
 
